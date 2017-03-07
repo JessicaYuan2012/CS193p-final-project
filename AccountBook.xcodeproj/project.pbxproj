@@ -56,15 +56,23 @@
 		2F15E4E41E6E5D820067BF1A /* AccountBook */ = {
 			isa = PBXGroup;
 			children = (
-				2F15E4E51E6E5D820067BF1A /* AppDelegate.swift */,
+				2F15E4FA1E6E5DA20067BF1A /* Supporting Files */,
 				2F15E4E71E6E5D820067BF1A /* ViewController.swift */,
 				2F15E4E91E6E5D820067BF1A /* Main.storyboard */,
+			);
+			path = AccountBook;
+			sourceTree = "<group>";
+		};
+		2F15E4FA1E6E5DA20067BF1A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2F15E4E51E6E5D820067BF1A /* AppDelegate.swift */,
 				2F15E4EF1E6E5D820067BF1A /* Assets.xcassets */,
 				2F15E4F11E6E5D820067BF1A /* LaunchScreen.storyboard */,
 				2F15E4F41E6E5D820067BF1A /* Info.plist */,
 				2F15E4EC1E6E5D820067BF1A /* AccountBook.xcdatamodeld */,
 			);
-			path = AccountBook;
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
