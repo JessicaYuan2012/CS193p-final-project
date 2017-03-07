@@ -13,7 +13,7 @@
 		2F15E4F01E6E5D820067BF1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F15E4EF1E6E5D820067BF1A /* Assets.xcassets */; };
 		2F15E4F31E6E5D820067BF1A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F15E4F11E6E5D820067BF1A /* LaunchScreen.storyboard */; };
 		2F15E4FE1E6E6EAF0067BF1A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F15E4FD1E6E6EAF0067BF1A /* HomeViewController.swift */; };
-		2F15E5021E6E7B300067BF1A /* NewExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F15E5011E6E7B300067BF1A /* NewExpenseViewController.swift */; };
+		2F15E5021E6E7B300067BF1A /* NewTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F15E5011E6E7B300067BF1A /* NewTransactionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +25,7 @@
 		2F15E4F21E6E5D820067BF1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2F15E4F41E6E5D820067BF1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F15E4FD1E6E6EAF0067BF1A /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		2F15E5011E6E7B300067BF1A /* NewExpenseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewExpenseViewController.swift; sourceTree = "<group>"; };
+		2F15E5011E6E7B300067BF1A /* NewTransactionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTransactionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +60,7 @@
 			children = (
 				2F15E4E91E6E5D820067BF1A /* Main.storyboard */,
 				2F15E4FD1E6E6EAF0067BF1A /* HomeViewController.swift */,
-				2F15E5011E6E7B300067BF1A /* NewExpenseViewController.swift */,
+				2F15E5011E6E7B300067BF1A /* NewTransactionViewController.swift */,
 				2F15E4FA1E6E5DA20067BF1A /* Supporting Files */,
 			);
 			path = AccountBook;
@@ -153,7 +153,7 @@
 			files = (
 				2F15E4EE1E6E5D820067BF1A /* AccountBook.xcdatamodeld in Sources */,
 				2F15E4E61E6E5D820067BF1A /* AppDelegate.swift in Sources */,
-				2F15E5021E6E7B300067BF1A /* NewExpenseViewController.swift in Sources */,
+				2F15E5021E6E7B300067BF1A /* NewTransactionViewController.swift in Sources */,
 				2F15E4FE1E6E6EAF0067BF1A /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
