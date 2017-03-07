@@ -8,22 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		2F15E4E61E6E5D820067BF1A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F15E4E51E6E5D820067BF1A /* AppDelegate.swift */; };
-		2F15E4E81E6E5D820067BF1A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F15E4E71E6E5D820067BF1A /* ViewController.swift */; };
 		2F15E4EB1E6E5D820067BF1A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F15E4E91E6E5D820067BF1A /* Main.storyboard */; };
 		2F15E4EE1E6E5D820067BF1A /* AccountBook.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2F15E4EC1E6E5D820067BF1A /* AccountBook.xcdatamodeld */; };
 		2F15E4F01E6E5D820067BF1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F15E4EF1E6E5D820067BF1A /* Assets.xcassets */; };
 		2F15E4F31E6E5D820067BF1A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F15E4F11E6E5D820067BF1A /* LaunchScreen.storyboard */; };
+		2F15E4FE1E6E6EAF0067BF1A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F15E4FD1E6E6EAF0067BF1A /* HomeViewController.swift */; };
+		2F15E5021E6E7B300067BF1A /* NewExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F15E5011E6E7B300067BF1A /* NewExpenseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2F15E4E21E6E5D820067BF1A /* AccountBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AccountBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F15E4E51E6E5D820067BF1A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2F15E4E71E6E5D820067BF1A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2F15E4EA1E6E5D820067BF1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2F15E4ED1E6E5D820067BF1A /* AccountBook.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AccountBook.xcdatamodel; sourceTree = "<group>"; };
 		2F15E4EF1E6E5D820067BF1A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2F15E4F21E6E5D820067BF1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2F15E4F41E6E5D820067BF1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2F15E4FD1E6E6EAF0067BF1A /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		2F15E5011E6E7B300067BF1A /* NewExpenseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewExpenseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,9 +58,10 @@
 		2F15E4E41E6E5D820067BF1A /* AccountBook */ = {
 			isa = PBXGroup;
 			children = (
-				2F15E4FA1E6E5DA20067BF1A /* Supporting Files */,
-				2F15E4E71E6E5D820067BF1A /* ViewController.swift */,
 				2F15E4E91E6E5D820067BF1A /* Main.storyboard */,
+				2F15E4FD1E6E6EAF0067BF1A /* HomeViewController.swift */,
+				2F15E5011E6E7B300067BF1A /* NewExpenseViewController.swift */,
+				2F15E4FA1E6E5DA20067BF1A /* Supporting Files */,
 			);
 			path = AccountBook;
 			sourceTree = "<group>";
@@ -149,8 +152,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F15E4EE1E6E5D820067BF1A /* AccountBook.xcdatamodeld in Sources */,
-				2F15E4E81E6E5D820067BF1A /* ViewController.swift in Sources */,
 				2F15E4E61E6E5D820067BF1A /* AppDelegate.swift in Sources */,
+				2F15E5021E6E7B300067BF1A /* NewExpenseViewController.swift in Sources */,
+				2F15E4FE1E6E6EAF0067BF1A /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
