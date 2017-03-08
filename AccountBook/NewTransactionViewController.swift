@@ -10,6 +10,8 @@ import UIKit
 
 class NewTransactionViewController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
     
+    @IBOutlet weak var done: UIBarButtonItem!
+    
     @IBOutlet weak var datePicker: UIDatePicker!
     
     @IBOutlet weak var amountTextField: UITextField!
@@ -61,10 +63,16 @@ class NewTransactionViewController: UITableViewController, UIPickerViewDataSourc
         }
     }
     
-    // MARK: - dismiss keyboard for text field
+    // MARK: - TextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField.restorationIdentifier != nil, textField.restorationIdentifier! == "AmountTextField", textField.text != nil, textField.text! != "" {
+            done.isEnabled = true
+        }
     }
     
     /*

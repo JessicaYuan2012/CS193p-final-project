@@ -22,7 +22,6 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     
     // MARK: - Unwind segue actions
     @IBAction func goBack(from segue: UIStoryboardSegue) {
-        // TODO: alert - discard all information
     }
     
     @IBAction func addNewTransaction(from segue: UIStoryboardSegue) {
@@ -47,6 +46,8 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             if comment != nil, comment! == "" {
                 comment = nil
             }
+            
+            // TODO: image data
             let imageData: NSData? = nil
             
             if amount != nil, amount! > 0 {
@@ -57,10 +58,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
                         self?.updateData()
                     }
                 }
-            } else {
-                // TODO: alert - unexpected amount
-                print("unexpected amount input")
-            }
+            } 
         }
     }
     

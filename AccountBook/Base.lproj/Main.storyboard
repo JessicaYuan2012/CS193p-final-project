@@ -273,7 +273,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0.00" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X9v-cG-Qbh">
+                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="AmountTextField" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0.00" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X9v-cG-Qbh">
                                                             <rect key="frame" x="208.5" y="0.0" width="150.5" height="27.5"/>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -396,7 +396,7 @@
                                 <segue destination="A1S-pc-gfl" kind="unwind" identifier="Cancel" unwindAction="goBackFrom:" id="c2n-8l-hUK"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="VmG-nb-WHC">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="done" id="VmG-nb-WHC">
                             <connections>
                                 <segue destination="A1S-pc-gfl" kind="unwind" identifier="Add Transaction" unwindAction="addNewTransactionFrom:" id="tee-yo-7W1"/>
                             </connections>
@@ -407,6 +407,7 @@
                         <outlet property="categoryPicker" destination="6h1-Tq-ted" id="fnE-yc-ZlC"/>
                         <outlet property="commentTextField" destination="ci0-ys-NWr" id="1ZL-LR-bDj"/>
                         <outlet property="datePicker" destination="6yy-ud-f5N" id="hs5-AW-2VG"/>
+                        <outlet property="done" destination="VmG-nb-WHC" id="Hom-MV-goX"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mMe-Il-yXF" userLabel="First Responder" sceneMemberID="firstResponder"/>
