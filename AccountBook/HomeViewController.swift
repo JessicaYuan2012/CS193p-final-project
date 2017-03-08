@@ -76,7 +76,6 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     }
     
     private func getStatistics() throws -> (lastBalance: Decimal, currentBalance: Decimal, expense: Decimal, income: Decimal) {
-        // TODO: Aggregate Query?
         self.printDatabaseStatistics()
         
         let startOfThisMonth = Date().startOfMonth()
@@ -87,39 +86,38 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         let thisMonthPredicate = NSPredicate(format: "date >= %@", startOfThisMonth as NSDate)
         let lastMonthPredicate = NSPredicate(format: "date >= %@ and date < %@", startOfLastMonth as NSDate, startOfThisMonth as NSDate)
         
-        let request: NSFetchRequest<Transaction> = Transaction.fetchRequest()
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Transaction")
+        request.resultType = .dictionaryResultType
+        let expression = NSExpressionDescription()
+        expression.expression = NSExpression(forKeyPath: "@sum.amount")
+        expression.expressionResultType = .decimalAttributeType
         
         if let context = container?.viewContext {
             do {
                 request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [expensePredicate, thisMonthPredicate])
-                let thisMonthExpenses = try context.fetch(request)
-                var expenseAmount: Decimal = 0
-                for expense in thisMonthExpenses {
-                    expenseAmount += expense.amount! as Decimal
-                }
+                expression.name = "thisMonthExpense"
+                request.propertiesToFetch = [expression]
+                var result = try context.fetch(request)
+                let expenseAmount = (result[0] as! [String:Decimal])[expression.name]!
                 
                 request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [incomePredicate, thisMonthPredicate])
-                let thisMonthIncomes = try context.fetch(request)
-                var incomeAmount: Decimal = 0
-                for income in thisMonthIncomes {
-                    incomeAmount += income.amount! as Decimal
-                }
+                expression.name = "thisMonthIncome"
+                request.propertiesToFetch = [expression]
+                result = try context.fetch(request)
+                let incomeAmount = (result[0] as! [String:Decimal])[expression.name]!
                 
                 request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [expensePredicate, lastMonthPredicate])
-                let lastMonthExpenses = try context.fetch(request)
-                var lastExpenseAmount: Decimal = 0
-                for expense in lastMonthExpenses {
-                    lastExpenseAmount += expense.amount! as Decimal
-                }
+                expression.name = "lastMonthExpense"
+                request.propertiesToFetch = [expression]
+                result = try context.fetch(request)
+                let lastExpenseAmount = (result[0] as! [String:Decimal])[expression.name]!
                 
                 request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [incomePredicate, lastMonthPredicate])
-                let lastMonthIncomes = try context.fetch(request)
-                var lastIncomeAmount: Decimal = 0
-                for income in lastMonthIncomes {
-                    lastIncomeAmount += income.amount! as Decimal
-                }
-                
-                return (lastIncomeAmount-lastExpenseAmount, incomeAmount-expenseAmount, expenseAmount, incomeAmount)
+                expression.name = "lastMonthIncome"
+                request.propertiesToFetch = [expression]
+                result = try context.fetch(request)
+                let lastIncomeAmount = (result[0] as! [String:Decimal])[expression.name]!
+                return (lastIncomeAmount - lastExpenseAmount, incomeAmount - expenseAmount, expenseAmount, incomeAmount)
             } catch  {
                 throw error
             }
