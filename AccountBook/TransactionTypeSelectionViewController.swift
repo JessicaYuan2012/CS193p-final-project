@@ -22,7 +22,8 @@ class TransactionTypeSelectionViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let size = tableView.minimumSize(forSection: 0)
+        var size = tableView.minimumSize(forSection: 0)
+        size.width *= 1.5 // make it a little wider
         preferredContentSize = size
     }
     
@@ -52,7 +53,6 @@ extension UITableView {
             let indexPath = IndexPath(row: row, section: section)
             if let cell = cellForRow(at: indexPath) ?? dataSource?.tableView(self, cellForRowAt: indexPath) {
                 let cellSize = cell.contentView.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
-//                let actualWidth = cell.contentView.bounds.width
                 width = max(width, cellSize.width)
                 height += heightForRow(at: indexPath)
             }

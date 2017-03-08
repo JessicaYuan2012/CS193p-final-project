@@ -14,6 +14,7 @@
 		2F15E4F31E6E5D820067BF1A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F15E4F11E6E5D820067BF1A /* LaunchScreen.storyboard */; };
 		2F15E4FE1E6E6EAF0067BF1A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F15E4FD1E6E6EAF0067BF1A /* HomeViewController.swift */; };
 		2F15E5021E6E7B300067BF1A /* NewTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F15E5011E6E7B300067BF1A /* NewTransactionViewController.swift */; };
+		2F1899F71E6FB69900A47049 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1899F61E6FB69900A47049 /* Transaction.swift */; };
 		2F976A6A1E6F35F400E651BF /* TransactionTypeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F976A691E6F35F400E651BF /* TransactionTypeSelectionViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 		2F15E4F41E6E5D820067BF1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F15E4FD1E6E6EAF0067BF1A /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		2F15E5011E6E7B300067BF1A /* NewTransactionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTransactionViewController.swift; sourceTree = "<group>"; };
+		2F1899F61E6FB69900A47049 /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		2F976A691E6F35F400E651BF /* TransactionTypeSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionTypeSelectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,6 +66,8 @@
 				2F976A691E6F35F400E651BF /* TransactionTypeSelectionViewController.swift */,
 				2F15E4FD1E6E6EAF0067BF1A /* HomeViewController.swift */,
 				2F15E5011E6E7B300067BF1A /* NewTransactionViewController.swift */,
+				2F15E4E51E6E5D820067BF1A /* AppDelegate.swift */,
+				2F1899F81E6FB84C00A47049 /* Core Data */,
 				2F15E4FA1E6E5DA20067BF1A /* Supporting Files */,
 			);
 			path = AccountBook;
@@ -72,13 +76,20 @@
 		2F15E4FA1E6E5DA20067BF1A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				2F15E4E51E6E5D820067BF1A /* AppDelegate.swift */,
 				2F15E4EF1E6E5D820067BF1A /* Assets.xcassets */,
 				2F15E4F11E6E5D820067BF1A /* LaunchScreen.storyboard */,
 				2F15E4F41E6E5D820067BF1A /* Info.plist */,
-				2F15E4EC1E6E5D820067BF1A /* AccountBook.xcdatamodeld */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2F1899F81E6FB84C00A47049 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				2F15E4EC1E6E5D820067BF1A /* AccountBook.xcdatamodeld */,
+				2F1899F61E6FB69900A47049 /* Transaction.swift */,
+			);
+			name = "Core Data";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,6 +167,7 @@
 			files = (
 				2F976A6A1E6F35F400E651BF /* TransactionTypeSelectionViewController.swift in Sources */,
 				2F15E4EE1E6E5D820067BF1A /* AccountBook.xcdatamodeld in Sources */,
+				2F1899F71E6FB69900A47049 /* Transaction.swift in Sources */,
 				2F15E4E61E6E5D820067BF1A /* AppDelegate.swift in Sources */,
 				2F15E5021E6E7B300067BF1A /* NewTransactionViewController.swift in Sources */,
 				2F15E4FE1E6E6EAF0067BF1A /* HomeViewController.swift in Sources */,
