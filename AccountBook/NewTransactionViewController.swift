@@ -18,17 +18,23 @@ class NewTransactionViewController: UITableViewController, UIPickerViewDataSourc
     
     @IBOutlet weak var commentTextField: UITextField!
     
-    @IBAction func cancel(_ sender: UIBarButtonItem) {
-        // TODO: Add confirmation message
-        presentingViewController?.dismiss(animated: true, completion: nil)
-    }
+//    @IBAction func cancel(_ sender: UIBarButtonItem) {
+//        // TODO: Add confirmation message
+//        presentingViewController?.dismiss(animated: true, completion: nil)
+//    }
+//    
+//    @IBAction func submit(_ sender: UIBarButtonItem) {
+//        // TODO: Add constraint check and core data part
+//        presentingViewController?.dismiss(animated: true, completion: nil)
+//    }
     
-    @IBAction func submit(_ sender: UIBarButtonItem) {
-        // TODO: Add constraint check and core data part
-        presentingViewController?.dismiss(animated: true, completion: nil)
+    var transactionType: String? {
+        didSet{
+            if transactionType != nil {
+                self.navigationItem.title = "Add " + transactionType!
+            }
+        }
     }
-    
-    var transactionType: String?
     
     override func viewDidLoad() {
         amountTextField.delegate = self

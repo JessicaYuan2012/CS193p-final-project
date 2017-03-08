@@ -9,6 +9,15 @@
 import UIKit
 
 class HomeViewController: UIViewController, UIPopoverPresentationControllerDelegate {
+    @IBAction func goBack(from segue: UIStoryboardSegue) {
+        
+    }
+    
+    @IBAction func addNewTransaction(from segue: UIStoryboardSegue) {
+        if let editor = segue.source as? NewTransactionViewController {
+            
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,18 +32,15 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let identifier = segue.identifier {
-            if let targetViewController = segue.destination.contents as? NewTransactionViewController {
-                switch identifier {
-                case "Add Expense":
-                    targetViewController.transactionType = "Expense"
-                    targetViewController.navigationItem.title = "Add New Expense"
-                default:
-                    targetViewController.transactionType = "Income"
-                    targetViewController.navigationItem.title = "Add New Income"
-                }
+        if segue.destination is TransactionTypeSelectionViewController {
+            if let popoverPresentationController = segue.destination.popoverPresentationController {
+                popoverPresentationController.delegate = self
             }
         }
+    }
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
     }
     
 }
