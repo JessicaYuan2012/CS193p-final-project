@@ -20,6 +20,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     
     @IBOutlet weak var thisMonthIncome: UILabel!
     
+    // MARK: - Unwind segue actions
     @IBAction func goBack(from segue: UIStoryboardSegue) {
         // TODO: alert - discard all information
     }
@@ -52,7 +53,9 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
                 container?.performBackgroundTask {[weak self] context in
                     _ = Transaction.createNewTransaction(type: type, date: date, amount: amount!, category: category!, comment: comment, imageData: imageData, in: context)
                     try? context.save()
-                    self?.printDatabaseStatistics()
+                    DispatchQueue.main.async {
+                        self?.updateData()
+                    }
                 }
             } else {
                 // TODO: alert - unexpected amount
@@ -61,18 +64,84 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         }
     }
     
+    // MARK: Core Data
     private func printDatabaseStatistics() {
         if let context = container?.viewContext {
-            context.perform {
-                if let transactionCount = try? context.count(for: Transaction.fetchRequest()) {
-                    print("\(transactionCount) transactions")
-                }
+            let request: NSFetchRequest<Transaction> = Transaction.fetchRequest()
+            let transactions = try? context.fetch(request)
+            for transaction in transactions! {
+                print("\(transaction.type!), \(transaction.date!), \(transaction.amount!), \(transaction.category!), \(transaction.comment ?? "(no comment)")")
             }
         }
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
+    private func getStatistics() throws -> (lastBalance: Decimal, currentBalance: Decimal, expense: Decimal, income: Decimal) {
+        // TODO: Aggregate Query?
+        self.printDatabaseStatistics()
+        
+        let startOfThisMonth = Date().startOfMonth()
+        let startOfLastMonth = Date().startOfMonth(offset: -1)
+        
+        let expensePredicate = NSPredicate(format: "type = %@", "Expense")
+        let incomePredicate = NSPredicate(format: "type = %@", "Income")
+        let thisMonthPredicate = NSPredicate(format: "date >= %@", startOfThisMonth as NSDate)
+        let lastMonthPredicate = NSPredicate(format: "date >= %@ and date < %@", startOfLastMonth as NSDate, startOfThisMonth as NSDate)
+        
+        let request: NSFetchRequest<Transaction> = Transaction.fetchRequest()
+        
+        if let context = container?.viewContext {
+            do {
+                request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [expensePredicate, thisMonthPredicate])
+                let thisMonthExpenses = try context.fetch(request)
+                var expenseAmount: Decimal = 0
+                for expense in thisMonthExpenses {
+                    expenseAmount += expense.amount! as Decimal
+                }
+                
+                request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [incomePredicate, thisMonthPredicate])
+                let thisMonthIncomes = try context.fetch(request)
+                var incomeAmount: Decimal = 0
+                for income in thisMonthIncomes {
+                    incomeAmount += income.amount! as Decimal
+                }
+                
+                request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [expensePredicate, lastMonthPredicate])
+                let lastMonthExpenses = try context.fetch(request)
+                var lastExpenseAmount: Decimal = 0
+                for expense in lastMonthExpenses {
+                    lastExpenseAmount += expense.amount! as Decimal
+                }
+                
+                request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [incomePredicate, lastMonthPredicate])
+                let lastMonthIncomes = try context.fetch(request)
+                var lastIncomeAmount: Decimal = 0
+                for income in lastMonthIncomes {
+                    lastIncomeAmount += income.amount! as Decimal
+                }
+                
+                return (lastIncomeAmount-lastExpenseAmount, incomeAmount-expenseAmount, expenseAmount, incomeAmount)
+            } catch  {
+                throw error
+            }
+        }
+        return (Decimal(0.0), Decimal(0.0), Decimal(0.0), Decimal(0.0))
+    }
+    
+    private func updateData() {
+        do {
+            let stat = try getStatistics()
+            lastMonthBalance.text = getCurrencyString(for: stat.lastBalance)
+            thisMonthBalance.text = getCurrencyString(for: stat.currentBalance)
+            thisMonthExpense.text = getCurrencyString(for: stat.expense)
+            thisMonthIncome.text = getCurrencyString(for: stat.income)
+        } catch {
+            print("error in HomeViewController.getStatistics()")
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateData()
     }
     
     // MARK: - Navigation
@@ -123,4 +192,10 @@ extension Date {
     func currentDate() -> Date {
         return Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day], from: Calendar.current.startOfDay(for: self)))!
     }
+}
+
+func getCurrencyString(for num: Decimal) -> String {
+    let numberFormatter = NumberFormatter()
+    numberFormatter.numberStyle = .currency
+    return numberFormatter.string(for: (num as NSDecimalNumber).doubleValue)!
 }
