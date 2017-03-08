@@ -58,7 +58,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
                         self?.updateData()
                     }
                 }
-            } 
+            }
         }
     }
     
@@ -79,48 +79,53 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         let startOfThisMonth = Date().startOfMonth()
         let startOfLastMonth = Date().startOfMonth(offset: -1)
         
-        let expensePredicate = NSPredicate(format: "type = %@", "Expense")
-        let incomePredicate = NSPredicate(format: "type = %@", "Income")
         let thisMonthPredicate = NSPredicate(format: "date >= %@", startOfThisMonth as NSDate)
         let lastMonthPredicate = NSPredicate(format: "date >= %@ and date < %@", startOfLastMonth as NSDate, startOfThisMonth as NSDate)
         
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Transaction")
         request.resultType = .dictionaryResultType
+        request.propertiesToGroupBy = ["type"]
         let expression = NSExpressionDescription()
         expression.expression = NSExpression(forKeyPath: "@sum.amount")
         expression.expressionResultType = .decimalAttributeType
+        expression.name = "totalAmount"
+        request.propertiesToFetch = ["type", expression]
+        
+        var expenseAmount: Decimal = 0
+        var incomeAmount: Decimal = 0
+        var lastExpenseAmount: Decimal = 0
+        var lastIncomeAmount: Decimal = 0
         
         if let context = container?.viewContext {
             do {
-                request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [expensePredicate, thisMonthPredicate])
-                expression.name = "thisMonthExpense"
-                request.propertiesToFetch = [expression]
-                var result = try context.fetch(request)
-                let expenseAmount = (result[0] as! [String:Decimal])[expression.name]!
+                request.predicate = thisMonthPredicate
+                var results = try context.fetch(request)
+                for result in results {
+                    let type = (result as! [String: Any])["type"]! as! String
+                    let amount = (result as! [String:Any])[expression.name]! as! Decimal
+                    if type == "Expense" {
+                        expenseAmount = amount
+                    } else {
+                        incomeAmount = amount
+                    }
+                }
                 
-                request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [incomePredicate, thisMonthPredicate])
-                expression.name = "thisMonthIncome"
-                request.propertiesToFetch = [expression]
-                result = try context.fetch(request)
-                let incomeAmount = (result[0] as! [String:Decimal])[expression.name]!
-                
-                request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [expensePredicate, lastMonthPredicate])
-                expression.name = "lastMonthExpense"
-                request.propertiesToFetch = [expression]
-                result = try context.fetch(request)
-                let lastExpenseAmount = (result[0] as! [String:Decimal])[expression.name]!
-                
-                request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [incomePredicate, lastMonthPredicate])
-                expression.name = "lastMonthIncome"
-                request.propertiesToFetch = [expression]
-                result = try context.fetch(request)
-                let lastIncomeAmount = (result[0] as! [String:Decimal])[expression.name]!
-                return (lastIncomeAmount - lastExpenseAmount, incomeAmount - expenseAmount, expenseAmount, incomeAmount)
+                request.predicate = lastMonthPredicate
+                results = try context.fetch(request)
+                for result in results {
+                    let type = (result as! [String: Any])["type"]! as! String
+                    let amount = (result as! [String:Any])[expression.name]! as! Decimal
+                    if type == "Expense" {
+                        lastExpenseAmount = amount
+                    } else {
+                        lastIncomeAmount = amount
+                    }
+                }
             } catch  {
                 throw error
             }
         }
-        return (Decimal(0.0), Decimal(0.0), Decimal(0.0), Decimal(0.0))
+        return (lastIncomeAmount - lastExpenseAmount, incomeAmount - expenseAmount, expenseAmount, incomeAmount)
     }
     
     private func updateData() {
