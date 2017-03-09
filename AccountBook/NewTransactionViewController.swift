@@ -23,6 +23,8 @@ class NewTransactionViewController: UITableViewController, UIPickerViewDataSourc
         present(alert, animated: true, completion: nil)
     }
     
+    var image: UIImage?
+    
     // MARK: - Image Picker
     let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
     
@@ -122,6 +124,7 @@ class NewTransactionViewController: UITableViewController, UIPickerViewDataSourc
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         imageView.contentMode = .scaleAspectFit
         imageView.image = chosenImage
+        self.image = chosenImage
         addImageButton.setTitle("Change Image", for: .normal)
         dismiss(animated:true, completion: nil)
     }

@@ -47,8 +47,10 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
                 comment = nil
             }
             
-            // TODO: image data
-            let imageData: NSData? = nil
+            var imageData: NSData? = nil
+            if editor.image != nil {
+                imageData = NSData(data: UIImageJPEGRepresentation(editor.image!, 1.0)!)
+            }
             
             if amount != nil, amount! > 0 {
                 container?.performBackgroundTask {[weak self] context in
