@@ -15,7 +15,7 @@ extension TransactionListTableViewController
     // MARK: UITableViewDataSource
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        if searchController.isActive && searchController.searchBar.text != "" {
+        if searchController.isActive {
             return filteredTransactions.count
         }
         return fetchedResultsController?.sections?.count ?? 1
@@ -23,7 +23,7 @@ extension TransactionListTableViewController
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) ->
         Int {
-            if searchController.isActive && searchController.searchBar.text != "" {
+            if searchController.isActive {
                 return filteredTransactions[section].1.count
             }
             if let sections = fetchedResultsController?.sections, sections.count > 0 {
@@ -34,7 +34,7 @@ extension TransactionListTableViewController
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if searchController.isActive && searchController.searchBar.text != "" {
+        if searchController.isActive {
             return reformatDateString(filteredTransactions[section].0)
         }
         

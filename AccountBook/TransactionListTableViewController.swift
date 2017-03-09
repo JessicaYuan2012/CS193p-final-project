@@ -11,7 +11,7 @@ import CoreData
 
 
 // Cite: search controller https://www.raywenderlich.com/113772/uisearchcontroller-tutorial
-class TransactionListTableViewController: FetchedResultsTableViewController, UISearchResultsUpdating {
+class TransactionListTableViewController: FetchedResultsTableViewController, UISearchResultsUpdating, UISearchBarDelegate {
     
     var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     
@@ -20,6 +20,26 @@ class TransactionListTableViewController: FetchedResultsTableViewController, UIS
     let searchController = UISearchController(searchResultsController: nil)
     
     private func filterContentForSearchText(_ searchText: String, scope: String = "All") {
+        func matchScope(_ transaction: Transaction) -> Bool {
+            if scope == "All" {
+                return true
+            }
+            return scope == transaction.type!
+        }
+        
+        func matchCategoryOrComment(_ transaction: Transaction) -> Bool {
+            if searchText == "" {
+                return true
+            }
+            if transaction.category!.lowercased().contains(searchText.lowercased()) {
+                return true
+            }
+            if transaction.comment != nil, transaction.comment!.lowercased().contains(searchText.lowercased()) {
+                return true
+            }
+            return false
+        }
+        
         filteredTransactions.removeAll()
         if let sections = fetchedResultsController?.sections {
             let sectionNum = sections.count
@@ -29,7 +49,7 @@ class TransactionListTableViewController: FetchedResultsTableViewController, UIS
                 var transactionList: [Transaction] = []
                 for transactionIndex in 0..<transactionNum {
                     if let transaction = sections[sectionIndex].objects?[transactionIndex] as? Transaction {
-                        if transaction.category!.lowercased().contains(searchText.lowercased()) || (transaction.comment != nil && transaction.comment!.lowercased().contains(searchText.lowercased())) {
+                        if matchScope(transaction) && matchCategoryOrComment(transaction) {
                             transactionList.append(transaction)
                         }
                     }
@@ -58,9 +78,11 @@ class TransactionListTableViewController: FetchedResultsTableViewController, UIS
         }
     }
     
+    // MARK: - Table View DataSource
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Transaction Entry", for: indexPath) as! TransactionEntryTableViewCell
-        if searchController.isActive && searchController.searchBar.text != "" {
+        
+        if searchController.isActive {
             cell.transaction = filteredTransactions[indexPath.section].1[indexPath.row]
         } else {
             cell.transaction = fetchedResultsController?.object(at: indexPath)
@@ -71,7 +93,14 @@ class TransactionListTableViewController: FetchedResultsTableViewController, UIS
     
     // MARK: - UISearchResultsUpdating
     func updateSearchResults(for searchController: UISearchController) {
-        filterContentForSearchText(searchController.searchBar.text!)
+        let searchBar = searchController.searchBar
+        let scope = searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex]
+        filterContentForSearchText(searchController.searchBar.text!, scope: scope)
+    }
+    
+    // MARK: - UISearchBarDelegate
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        filterContentForSearchText(searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
     }
     
     override func viewDidLoad() {
@@ -80,6 +109,8 @@ class TransactionListTableViewController: FetchedResultsTableViewController, UIS
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
+        searchController.searchBar.scopeButtonTitles = ["All", "Expense", "Income"]
+        searchController.searchBar.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
