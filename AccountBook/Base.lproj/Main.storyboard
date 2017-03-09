@@ -10,62 +10,63 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--List-->
-        <scene sceneID="XCg-WW-neh">
+        <!--All Transactions-->
+        <scene sceneID="ROg-rm-7B9">
             <objects>
-                <viewController id="hbW-sb-1KU" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="KSF-iD-TRD"/>
-                        <viewControllerLayoutGuide type="bottom" id="nSt-Cv-8sk"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="1YB-OO-gNg">
+                <tableViewController id="wy5-Ed-0bb" customClass="TransactionListTableViewController" customModule="AccountBook" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ut2-Sq-8s4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="List" image="list bar" id="cEy-EU-3ls"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IHt-XI-AXi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Transaction Entry" id="Ihb-yV-17y" customClass="TransactionEntryTableViewCell" customModule="AccountBook" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ihb-yV-17y" id="MiZ-gq-yi2">
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="NLb-Fx-iC9">
+                                            <rect key="frame" x="8" y="8" width="326" height="28"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="XbB-1X-2kN">
+                                                    <rect key="frame" x="0.0" y="0.0" width="176" height="28"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bXx-Qm-HeZ">
+                                                    <rect key="frame" x="176" y="0.0" width="150" height="28"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="NLb-Fx-iC9" firstAttribute="leading" secondItem="MiZ-gq-yi2" secondAttribute="leadingMargin" id="G5T-GL-ucg"/>
+                                        <constraint firstItem="NLb-Fx-iC9" firstAttribute="top" secondItem="MiZ-gq-yi2" secondAttribute="topMargin" id="gd2-wR-PQD"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="NLb-Fx-iC9" secondAttribute="bottom" id="iDs-mL-5Sy"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="NLb-Fx-iC9" secondAttribute="trailing" id="wJ5-VM-MGY"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="amountLabel" destination="bXx-Qm-HeZ" id="Zpq-uI-jTf"/>
+                                    <outlet property="categoryLabel" destination="XbB-1X-2kN" id="Kba-1h-Wq5"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="wy5-Ed-0bb" id="wbM-NE-hmw"/>
+                            <outlet property="delegate" destination="wy5-Ed-0bb" id="zrq-Cr-f7H"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="All Transactions" id="3vM-yR-jmv"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lhi-Ld-6PS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-498" y="-337"/>
-        </scene>
-        <!--Trend-->
-        <scene sceneID="ZjD-ik-L6g">
-            <objects>
-                <viewController id="KxP-Jf-4kn" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="0RB-Rp-VMK"/>
-                        <viewControllerLayoutGuide type="bottom" id="Gsi-lm-aHw"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="kq2-xl-9oW">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Trend" image="trend bar" id="wQc-aw-5fV"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iYq-Va-aSb" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-498" y="609"/>
-        </scene>
-        <!--Composition-->
-        <scene sceneID="vAY-8v-Zxn">
-            <objects>
-                <viewController id="fMr-1k-0I3" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Ie4-K8-zd1"/>
-                        <viewControllerLayoutGuide type="bottom" id="B0k-qM-S2E"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="XZz-Uu-Pnw">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Composition" image="composition bar" id="0dm-v3-O9m"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7Uu-BZ-9BH" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-498" y="1664"/>
+            <point key="canvasLocation" x="410" y="-333"/>
         </scene>
         <!--Home-->
         <scene sceneID="eio-4G-t7H">
@@ -465,9 +466,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="du9-7v-s8c" kind="relationship" relationship="viewControllers" id="DYY-QK-pMl"/>
-                        <segue destination="hbW-sb-1KU" kind="relationship" relationship="viewControllers" id="AdZ-Y9-KyA"/>
-                        <segue destination="KxP-Jf-4kn" kind="relationship" relationship="viewControllers" id="yAA-lq-bb1"/>
-                        <segue destination="fMr-1k-0I3" kind="relationship" relationship="viewControllers" id="boN-c3-NAn"/>
+                        <segue destination="fT9-Na-ylu" kind="relationship" relationship="viewControllers" id="m6n-yx-eXJ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="faM-zB-3tR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -581,13 +580,30 @@
             </objects>
             <point key="canvasLocation" x="1983" y="-1286"/>
         </scene>
+        <!--List-->
+        <scene sceneID="e6A-rz-aef">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fT9-Na-ylu" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="List" image="list bar" id="cLx-8L-eQh"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Qcc-zc-cLw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="wy5-Ed-0bb" kind="relationship" relationship="rootViewController" id="J6w-TY-QMN"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wpO-nv-75S" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-498" y="-333"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="composition bar" width="30" height="30"/>
         <image name="default image" width="992" height="680"/>
         <image name="home bar" width="30" height="30"/>
         <image name="list bar" width="30" height="30"/>
-        <image name="trend bar" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="NOU-6K-U6l"/>

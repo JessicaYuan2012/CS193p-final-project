@@ -67,10 +67,12 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     // MARK: Core Data
     private func printDatabaseStatistics() {
         if let context = container?.viewContext {
-            let request: NSFetchRequest<Transaction> = Transaction.fetchRequest()
-            let transactions = try? context.fetch(request)
-            for transaction in transactions! {
-                print("\(transaction.type!), \(transaction.date!), \(transaction.amount!), \(transaction.category!), \(transaction.comment ?? "(no comment)")")
+            context.perform {
+                let request: NSFetchRequest<Transaction> = Transaction.fetchRequest()
+                let transactions = try? context.fetch(request)
+                for transaction in transactions! {
+                    print("\(transaction.type!), \(transaction.date!), \(transaction.amount!), \(transaction.category!), \(transaction.comment ?? "(no comment)")")
+                }
             }
         }
     }
@@ -157,6 +159,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     }
     
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        // always show as a popover
         return .none
     }
     
