@@ -10,20 +10,10 @@ import UIKit
 
 class TransactionTypeSelectionViewController: UITableViewController {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         var size = tableView.minimumSize(forSection: 0)
-        size.width *= 1.5 // make it a little wider
+        size.width *= 2.0 // make it a little wider
         preferredContentSize = size
     }
     

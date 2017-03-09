@@ -112,9 +112,38 @@ class NewTransactionViewController: UITableViewController, UIPickerViewDataSourc
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField.restorationIdentifier != nil, textField.restorationIdentifier! == "AmountTextField", textField.text != nil, textField.text! != "" {
-            doneButton.isEnabled = true
+        if textField.restorationIdentifier != nil, textField.restorationIdentifier! == "AmountTextField" {
+            if textField.text != nil, textField.text! != "" {
+                let numberFormatter = NumberFormatter()
+                if let enteredAmount = numberFormatter.number(from: textField.text!) {
+                    if enteredAmount.compare(NSNumber(value: 0.0)) == .orderedDescending {
+                        doneButton.isEnabled = true
+                    }
+                }
+            }
         }
+    }
+    
+    // MARK: - Manually add done button for decimal pad
+    // Cite: http://stackoverflow.com/questions/28338981/how-to-add-done-button-to-numpad-in-ios-8-using-swift
+    private func addDoneButtonOnKeyboard() {
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
+        doneToolbar.barStyle       = UIBarStyle.default
+        let flexSpace              = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem  = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(self.doneButtonAction))
+        
+        var items = [UIBarButtonItem]()
+        items.append(flexSpace)
+        items.append(done)
+        
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+        
+        self.amountTextField.inputAccessoryView = doneToolbar
+    }
+    
+    func doneButtonAction() {
+        self.amountTextField.resignFirstResponder()
     }
     
     // MARK: - ImagePickerDelegate
@@ -145,6 +174,7 @@ class NewTransactionViewController: UITableViewController, UIPickerViewDataSourc
         commentTextField.delegate = self
         picker.delegate = self
         datePicker.maximumDate = Date()
+        addDoneButtonOnKeyboard()
         
         alert.addAction(UIAlertAction(title: "Take Photo", style: .default) {
             [weak self] (action: UIAlertAction) -> Void in

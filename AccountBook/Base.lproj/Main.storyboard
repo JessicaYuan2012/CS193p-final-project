@@ -277,7 +277,7 @@
                                                             <rect key="frame" x="208.5" y="0.0" width="150.5" height="27.5"/>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                                            <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
                                                             <connections>
                                                                 <outlet property="delegate" destination="QwT-XA-mLA" id="2wC-PI-qtt"/>
                                                             </connections>
