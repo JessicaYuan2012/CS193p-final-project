@@ -8,18 +8,64 @@
 
 import UIKit
 
-class NewTransactionViewController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
-    
-    @IBOutlet weak var done: UIBarButtonItem!
-    
+
+// Cite: https://makeapppie.com/2016/06/28/how-to-use-uiimagepickercontroller-for-a-camera-and-photo-library-in-swift-3-0/
+class NewTransactionViewController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    @IBOutlet weak var doneButton: UIBarButtonItem!
     @IBOutlet weak var datePicker: UIDatePicker!
-    
     @IBOutlet weak var amountTextField: UITextField!
-    
     @IBOutlet weak var categoryPicker: UIPickerView!
-    
     @IBOutlet weak var commentTextField: UITextField!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var addImageButton: UIButton!
     
+    @IBAction func addImage(_ sender: UIButton) {
+        present(alert, animated: true, completion: nil)
+    }
+    
+    // MARK: - Image Picker
+    let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+    
+    private func shootPhoto() {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            picker.allowsEditing = false
+            picker.sourceType = .camera
+            picker.cameraCaptureMode = .photo
+            picker.modalPresentationStyle = .fullScreen
+            present(picker, animated: true, completion: nil)
+        }
+        else {
+            noCamera()
+        }
+    }
+    
+    private func noCamera() { // for simulator
+        let alertVC = UIAlertController(
+            title: "No Camera",
+            message: "Sorry, this device has no camera",
+            preferredStyle: .alert)
+        let okAction = UIAlertAction(
+            title: "OK",
+            style:.default,
+            handler: nil)
+        alertVC.addAction(okAction)
+        present(alertVC, animated: true, completion: nil)
+    }
+    
+    private func choosePhotoFromLibrary() {
+        picker.allowsEditing = false
+        picker.sourceType = .photoLibrary
+        picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
+        picker.modalPresentationStyle = .popover
+        let ppc = picker.popoverPresentationController
+        ppc?.sourceView = view
+        // Cite: http://stackoverflow.com/questions/31759615/how-to-center-a-popoverview-in-swift
+        ppc?.sourceRect = CGRect(x: view.bounds.midX, y: view.bounds.midY, width: 0, height: 0) // show it at center
+        ppc?.permittedArrowDirections = UIPopoverArrowDirection.init(rawValue: 0)
+        present(picker, animated: true, completion: nil)
+    }
+    
+    // MARK: - public API of transaction type
     var transactionType: String? {
         didSet{
             if transactionType != nil {
@@ -28,13 +74,7 @@ class NewTransactionViewController: UITableViewController, UIPickerViewDataSourc
         }
     }
     
-    override func viewDidLoad() {
-        amountTextField.delegate = self
-        commentTextField.delegate = self
-        datePicker.maximumDate = Date()
-    }
-    
-    // MARK: - PickerView Data Source and Delegate
+    // MARK: - (Category) PickerView Data Source and Delegate
     private let expenseCategories = ["Necessaries", "Shopping", "Transportation", "Fee", "Others"]
     
     private let incomeCategories = ["Salary", "Finance", "Others"]
@@ -71,29 +111,54 @@ class NewTransactionViewController: UITableViewController, UIPickerViewDataSourc
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField.restorationIdentifier != nil, textField.restorationIdentifier! == "AmountTextField", textField.text != nil, textField.text! != "" {
-            done.isEnabled = true
+            doneButton.isEnabled = true
         }
     }
     
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
+    // MARK: - ImagePickerDelegate
+    let picker = UIImagePickerController()
     
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = chosenImage
+        addImageButton.setTitle("Change Image", for: .normal)
+        dismiss(animated:true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: - Lifecycle
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        datePicker.date = Date().currentDate() // clear the time
+    }
+    
+    override func viewDidLoad() {
+        amountTextField.delegate = self
+        commentTextField.delegate = self
+        picker.delegate = self
+        datePicker.maximumDate = Date()
+        
+        alert.addAction(UIAlertAction(title: "Take Photo", style: .default) {
+            [weak self] (action: UIAlertAction) -> Void in
+            self?.shootPhoto()
+        })
+        alert.addAction(UIAlertAction(title: "Choose Photo", style: .default) {
+            [weak self] (action: UIAlertAction) -> Void in
+            self?.choosePhotoFromLibrary()
+        })
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { (action: UIAlertAction) -> Void in })
+        alert.modalPresentationStyle = .popover
+        let ppc = alert.popoverPresentationController
+        ppc?.sourceView = view
+        // Cite: http://stackoverflow.com/questions/31759615/how-to-center-a-popoverview-in-swift
+        ppc?.sourceRect = CGRect(x: view.bounds.midX, y: view.bounds.midY, width: 0, height: 0) // show it at center
+        ppc?.permittedArrowDirections = UIPopoverArrowDirection.init(rawValue: 0)
+    }
     
     /*
      // MARK: - Navigation
