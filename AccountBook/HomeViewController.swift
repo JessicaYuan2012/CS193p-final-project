@@ -78,7 +78,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     }
     
     private func getStatistics() throws -> (lastBalance: Decimal, currentBalance: Decimal, expense: Decimal, income: Decimal) {
-        self.printDatabaseStatistics()
+        // self.printDatabaseStatistics()
         
         let startOfThisMonth = Date().startOfMonth()
         let startOfLastMonth = Date().startOfMonth(offset: -1)

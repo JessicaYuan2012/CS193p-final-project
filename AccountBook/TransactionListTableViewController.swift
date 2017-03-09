@@ -29,7 +29,7 @@ class TransactionListTableViewController: FetchedResultsTableViewController, UIS
                 var transactionList: [Transaction] = []
                 for transactionIndex in 0..<transactionNum {
                     if let transaction = sections[sectionIndex].objects?[transactionIndex] as? Transaction {
-                        if transaction.category!.lowercased().contains(searchText.lowercased()) {
+                        if transaction.category!.lowercased().contains(searchText.lowercased()) || (transaction.comment != nil && transaction.comment!.lowercased().contains(searchText.lowercased())) {
                             transactionList.append(transaction)
                         }
                     }
