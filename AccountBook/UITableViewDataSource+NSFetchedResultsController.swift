@@ -32,10 +32,7 @@ extension TransactionListTableViewController
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZZZ"
             let date = dateFormatter.date(from: originalDateString)!
-            
-//            let dateFormatterForDate = DateFormatter()
-            dateFormatter.dateStyle = .medium
-            dateFormatter.timeStyle = .none
+            dateFormatter.dateFormat = "E MMM d, yyyy"
             let formattedDateString = dateFormatter.string(from: date)
             return formattedDateString
         } else {
