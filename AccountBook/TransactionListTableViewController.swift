@@ -12,7 +12,16 @@ import CoreData
 
 // CITE: search controller https://www.raywenderlich.com/113772/uisearchcontroller-tutorial
 class TransactionListTableViewController: FetchedResultsTableViewController {
-    
+    @IBAction func deleteTransaction(from segue: UIStoryboardSegue) {
+        if let transactionDetailVC = segue.source as? TransactionDetailTableViewController {
+            if let transactionToDelete = transactionDetailVC.transaction {
+                if let context = container?.viewContext {
+                    context.delete(transactionToDelete)
+                    try? context.save()
+                }
+            }
+        }
+    }
     var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     
     var fetchedResultsController: NSFetchedResultsController<Transaction>?

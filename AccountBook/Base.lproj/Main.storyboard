@@ -136,9 +136,24 @@
                             <outlet property="delegate" destination="wmu-FY-Cu5" id="mBK-fm-X6l"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="WoX-df-sdV"/>
+                        <barButtonItem title="Delete Transaction" id="8sZ-JC-7X5">
+                            <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="deleteTransactionButton:" destination="wmu-FY-Cu5" id="sFg-Du-Bk2"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="VPX-YF-gam"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Detail" id="Yzq-qa-otN"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="H93-n7-oc4" kind="unwind" identifier="Delete Transaction" unwindAction="deleteTransactionFrom:" id="59n-5X-oiU"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dbg-fP-X3G" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="H93-n7-oc4" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1216.8" y="196.55172413793105"/>
         </scene>
@@ -750,7 +765,7 @@
         <image name="list bar" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="t97-DB-AN7"/>
         <segue reference="NOU-6K-U6l"/>
-        <segue reference="b3g-UP-SIl"/>
     </inferredMetricsTieBreakers>
 </document>

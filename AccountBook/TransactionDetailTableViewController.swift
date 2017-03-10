@@ -10,15 +10,43 @@ import UIKit
 import CoreData
 
 class TransactionDetailTableViewController: UITableViewController {
+    
+    @IBAction func deleteTransactionButton(_ sender: UIBarButtonItem) {
+        present(alert, animated: true, completion: nil)
+    }
+    
     var transaction: Transaction? {
         didSet {
             tableView.reloadData()
         }
     }
+    private let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
     
     // MARK: - View Controller Lifecycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setToolbarHidden(false, animated: true)
+//        self.tabBarController?.tabBar.isHidden = true
+//        self.tabBarController?.tabBar.isOpaque = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setToolbarHidden(true, animated: true)
+//        self.tabBarController?.tabBar.isHidden = false
+//        self.tabBarController?.tabBar.isOpaque = false
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        alert.addAction(UIAlertAction(title: "Delete Transaction", style: .destructive) {
+            [weak self] (action: UIAlertAction) -> Void in
+            self?.performSegue(withIdentifier: "Delete Transaction", sender: self)
+            
+        })
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) {
+            (action: UIAlertAction) -> Void in
+        })
     }
     
     // MARK: - Table view data source
