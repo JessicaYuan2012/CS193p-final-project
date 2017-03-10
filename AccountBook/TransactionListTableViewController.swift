@@ -11,7 +11,7 @@ import CoreData
 
 
 // Cite: search controller https://www.raywenderlich.com/113772/uisearchcontroller-tutorial
-class TransactionListTableViewController: FetchedResultsTableViewController, UISearchResultsUpdating, UISearchBarDelegate {
+class TransactionListTableViewController: FetchedResultsTableViewController, UISearchResultsUpdating, UISearchBarDelegate, UISplitViewControllerDelegate {
     
     var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     
@@ -103,8 +103,19 @@ class TransactionListTableViewController: FetchedResultsTableViewController, UIS
         filterContentForSearchText(searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    // MARK: - UISplitViewControllerDelegate
+    func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
+        if primaryViewController.contents == self {
+            if let detailVC = secondaryViewController.contents as? TransactionDetailTableViewController, detailVC.transaction == nil {
+                return true
+            }
+        }
+        return false
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.splitViewController?.delegate = self
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true

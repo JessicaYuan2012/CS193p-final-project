@@ -10,7 +10,11 @@ import UIKit
 import CoreData
 
 class TransactionDetailTableViewController: UITableViewController {
-    var transaction: Transaction?
+    var transaction: Transaction? {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +23,9 @@ class TransactionDetailTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
+        if transaction == nil {
+            return 0
+        }
         var sectionNumber = 1
         if transaction?.comment != nil {
             sectionNumber += 1
@@ -52,35 +59,39 @@ class TransactionDetailTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.section {
-        case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Text Cell", for: indexPath)
-            switch indexPath.row {
+        if transaction != nil {
+            switch indexPath.section {
             case 0:
-                // content = "Type - Category"
-                cell.textLabel?.text = transaction!.type! + " - " + transaction!.category!
-            case 1:
-                // content = "Date"
-                cell.textLabel?.text = reformatDateString(for: transaction!.date! as Date)
-            default:
-                // content = "Amount"
-                cell.textLabel?.text = getCurrencyString(for: transaction!.amount! as Decimal)
-            }
-            return cell
-        case 1:
-            if transaction?.comment != nil {
-                // content = "Comment"
                 let cell = tableView.dequeueReusableCell(withIdentifier: "Text Cell", for: indexPath)
-                cell.textLabel?.text = transaction!.comment
+                switch indexPath.row {
+                case 0:
+                    // content = "Type - Category"
+                    cell.textLabel?.text = transaction!.type! + " - " + transaction!.category!
+                case 1:
+                    // content = "Date"
+                    cell.textLabel?.text = reformatDateString(for: transaction!.date! as Date)
+                default:
+                    // content = "Amount"
+                    cell.textLabel?.text = getCurrencyString(for: transaction!.amount! as Decimal)
+                }
+                return cell
+            case 1:
+                if transaction?.comment != nil {
+                    // content = "Comment"
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "Text Cell", for: indexPath)
+                    cell.textLabel?.text = transaction!.comment
+                    return cell
+                }
+                fallthrough
+            default:
+                // content = "Image"
+                let cell = tableView.dequeueReusableCell(withIdentifier: "Image Cell", for: indexPath)
                 return cell
             }
-            fallthrough
-        default:
-            // content = "Image"
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Image Cell", for: indexPath)
-            return cell
         }
-
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Text Cell", for: indexPath)
+        return cell
     }
 
 }
