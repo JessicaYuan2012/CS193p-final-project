@@ -9,15 +9,12 @@
 import UIKit
 import CoreData
 
-class HomeViewController: UIViewController, UIPopoverPresentationControllerDelegate {
+class HomeViewController: UIViewController {
     var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     
     @IBOutlet weak var lastMonthBalance: UILabel!
-    
     @IBOutlet weak var thisMonthBalance: UILabel!
-    
     @IBOutlet weak var thisMonthExpense: UILabel!
-    
     @IBOutlet weak var thisMonthIncome: UILabel!
     
     // MARK: - Unwind segue actions
@@ -29,7 +26,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             let type = editor.transactionType!
             let date = editor.datePicker.date as NSDate
             
-            // Cite: http://stackoverflow.com/questions/27001914/swift-xcode-string-to-decimal-number
+            // CITE: http://stackoverflow.com/questions/27001914/swift-xcode-string-to-decimal-number
             let decimalFormatter = NumberFormatter()
             decimalFormatter.generatesDecimalNumbers = true
             decimalFormatter.numberStyle = .decimal
@@ -144,6 +141,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         }
     }
     
+    // MARK: View Controller Lifecycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateData()
@@ -157,51 +155,11 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             }
         }
     }
-    
+}
+
+extension HomeViewController: UIPopoverPresentationControllerDelegate {
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         // always show as a popover
         return .none
     }
-    
-}
-
-// Cite: - from lecture
-extension UIViewController {
-    var contents: UIViewController {
-        if let navcon = self as? UINavigationController {
-            return navcon.visibleViewController ?? self
-        } else {
-            return self
-        }
-    }
-}
-
-// Cite: http://stackoverflow.com/questions/33605816/first-and-last-day-of-the-current-month-in-swift
-extension Date {
-    func startOfMonth() -> Date {
-        return Calendar.current.date(from: Calendar.current.dateComponents([.year, .month], from: Calendar.current.startOfDay(for: self)))!
-    }
-    
-    func startOfMonth(offset: Int) -> Date {
-        return Calendar.current.date(byAdding: DateComponents(month: offset), to: self.startOfMonth())!
-    }
-    
-    func endOfMonth(offset: Int) -> Date {
-        return Calendar.current.date(byAdding: DateComponents(month: offset+1, day: -1), to: self.startOfMonth())!
-    }
-    
-    func oneWeekBefore() -> Date {
-        // 7 days in total including today
-        return Calendar.current.date(byAdding: DateComponents(day: -6), to: self.currentDate())!
-    }
-    
-    func currentDate() -> Date {
-        return Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day], from: Calendar.current.startOfDay(for: self)))!
-    }
-}
-
-func getCurrencyString(for num: Decimal) -> String {
-    let numberFormatter = NumberFormatter()
-    numberFormatter.numberStyle = .currency
-    return numberFormatter.string(for: (num as NSDecimalNumber).doubleValue)!
 }

@@ -10,8 +10,8 @@ import UIKit
 import CoreData
 
 
-// Cite: search controller https://www.raywenderlich.com/113772/uisearchcontroller-tutorial
-class TransactionListTableViewController: FetchedResultsTableViewController, UISearchResultsUpdating, UISearchBarDelegate, UISplitViewControllerDelegate {
+// CITE: search controller https://www.raywenderlich.com/113772/uisearchcontroller-tutorial
+class TransactionListTableViewController: FetchedResultsTableViewController {
     
     var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     
@@ -19,7 +19,7 @@ class TransactionListTableViewController: FetchedResultsTableViewController, UIS
     var filteredTransactions = [(String,[Transaction])]()
     let searchController = UISearchController(searchResultsController: nil)
     
-    private func filterContentForSearchText(_ searchText: String, scope: String = "All") {
+    fileprivate func filterContentForSearchText(_ searchText: String, scope: String = "All") {
         func matchScope(_ transaction: Transaction) -> Bool {
             if scope == "All" {
                 return true
@@ -91,28 +91,7 @@ class TransactionListTableViewController: FetchedResultsTableViewController, UIS
         return cell
     }
     
-    // MARK: - UISearchResultsUpdating
-    func updateSearchResults(for searchController: UISearchController) {
-        let searchBar = searchController.searchBar
-        let scope = searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex]
-        filterContentForSearchText(searchController.searchBar.text!, scope: scope)
-    }
-    
-    // MARK: - UISearchBarDelegate
-    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        filterContentForSearchText(searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
-    }
-    
-    // MARK: - UISplitViewControllerDelegate
-    func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
-        if primaryViewController.contents == self {
-            if let detailVC = secondaryViewController.contents as? TransactionDetailTableViewController, detailVC.transaction == nil {
-                return true
-            }
-        }
-        return false
-    }
-    
+    // MARK: View Controller Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
         self.splitViewController?.delegate = self
@@ -136,5 +115,30 @@ class TransactionListTableViewController: FetchedResultsTableViewController, UIS
                 targetTableView.transaction = cell.transaction
             }
         }
+    }
+}
+
+extension TransactionListTableViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        let scope = searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex]
+        filterContentForSearchText(searchController.searchBar.text!, scope: scope)
+    }
+}
+
+extension TransactionListTableViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        filterContentForSearchText(searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
+    }
+}
+
+extension TransactionListTableViewController: UISplitViewControllerDelegate {
+    func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
+        if primaryViewController.contents == self {
+            if let detailVC = secondaryViewController.contents as? TransactionDetailTableViewController, detailVC.transaction == nil {
+                return true
+            }
+        }
+        return false
     }
 }

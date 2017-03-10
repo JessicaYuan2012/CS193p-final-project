@@ -9,6 +9,8 @@
 import UIKit
 
 class ImageFieldTableViewCell: UITableViewCell {
+    @IBOutlet weak var transactionImageView: UIImageView!
+    
     var imageData: NSData? {
         didSet {
             if imageData != nil {
@@ -17,7 +19,4 @@ class ImageFieldTableViewCell: UITableViewCell {
             }
         }
     }
-    
-    @IBOutlet weak var transactionImageView: UIImageView!
-    
 }

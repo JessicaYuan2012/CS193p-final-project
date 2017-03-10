@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 class TransactionEntryTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
     @IBOutlet weak var commentLabel: UILabel!

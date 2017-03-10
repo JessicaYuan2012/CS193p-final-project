@@ -16,12 +16,13 @@ class TransactionDetailTableViewController: UITableViewController {
         }
     }
     
+    // MARK: - View Controller Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         if transaction == nil {
             return 0
@@ -35,7 +36,7 @@ class TransactionDetailTableViewController: UITableViewController {
         }
         return sectionNumber
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 3
@@ -57,7 +58,7 @@ class TransactionDetailTableViewController: UITableViewController {
             return "Image"
         }
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if transaction != nil {
             switch indexPath.section {

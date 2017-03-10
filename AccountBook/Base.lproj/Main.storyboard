@@ -107,15 +107,15 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Image Cell" rowHeight="381" id="45x-K0-sH5" customClass="ImageFieldTableViewCell" customModule="AccountBook" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="100" width="375" height="381"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Image Cell" rowHeight="188" id="45x-K0-sH5" customClass="ImageFieldTableViewCell" customModule="AccountBook" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="100" width="375" height="188"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="45x-K0-sH5" id="jI7-Ii-nhf">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="380"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="187"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aU2-ga-KJf">
-                                            <rect key="frame" x="7" y="16" width="360" height="348.5"/>
+                                            <rect key="frame" x="7" y="16" width="360" height="155.5"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -394,15 +394,15 @@
                                                     <rect key="frame" x="8" y="8" width="359" height="27.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wsm-UW-3Mj">
-                                                            <rect key="frame" x="0.0" y="0.0" width="198.5" height="27.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="140" height="27.5"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="AmountTextField" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0.00" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X9v-cG-Qbh">
-                                                            <rect key="frame" x="208.5" y="0.0" width="150.5" height="27.5"/>
+                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="AmountTextField" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="(Required)" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X9v-cG-Qbh">
+                                                            <rect key="frame" x="150" y="0.0" width="209" height="27.5"/>
                                                             <nil key="textColor"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                             <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
                                                             <connections>
                                                                 <outlet property="delegate" destination="QwT-XA-mLA" id="2wC-PI-qtt"/>
@@ -465,15 +465,15 @@
                                                     <rect key="frame" x="8" y="8" width="359" height="27.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zaf-r5-zgG">
-                                                            <rect key="frame" x="0.0" y="0.0" width="116.5" height="27.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="163" height="27.5"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add comments here..." textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ci0-ys-NWr">
-                                                            <rect key="frame" x="126.5" y="0.0" width="232.5" height="27.5"/>
+                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="(Optional)" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ci0-ys-NWr">
+                                                            <rect key="frame" x="173" y="0.0" width="186" height="27.5"/>
                                                             <nil key="textColor"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                             <textInputTraits key="textInputTraits"/>
                                                             <connections>
                                                                 <outlet property="delegate" destination="QwT-XA-mLA" id="maM-Zb-Lo6"/>
@@ -508,6 +508,7 @@
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9TW-Ba-XID">
                                                             <rect key="frame" x="47" y="0.0" width="312" height="28"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                             <state key="normal" title="Add Image"/>
                                                             <connections>
                                                                 <action selector="addImage:" destination="QwT-XA-mLA" eventType="touchUpInside" id="pU1-cq-t91"/>

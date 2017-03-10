@@ -12,7 +12,7 @@ import CoreData
 
 extension TransactionListTableViewController
 {
-    // MARK: UITableViewDataSource
+    // MARK: UITableView DataSource
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         if searchController.isActive {
@@ -44,20 +44,4 @@ extension TransactionListTableViewController
             return nil
         }
     }
-}
-
-func reformatDateString(_ originalDateString: String) -> String {
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZZZ"
-    let date = dateFormatter.date(from: originalDateString)!
-    dateFormatter.dateFormat = "E MMM d, yyyy"
-    let formattedDateString = dateFormatter.string(from: date)
-    return formattedDateString
-}
-
-func reformatDateString(for date: Date) -> String {
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd"
-    let formattedDateString = dateFormatter.string(from: date)
-    return formattedDateString
 }
