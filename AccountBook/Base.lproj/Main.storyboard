@@ -23,7 +23,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ihb-yV-17y" id="MiZ-gq-yi2">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DAE-6P-30s">
@@ -85,7 +85,7 @@
         <scene sceneID="3cb-eF-3E5">
             <objects>
                 <tableViewController id="wmu-FY-Cu5" customClass="TransactionDetailTableViewController" customModule="AccountBook" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="ffX-MB-Ryq">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="ffX-MB-Ryq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -107,24 +107,28 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Image Cell" rowHeight="400" id="45x-K0-sH5">
-                                <rect key="frame" x="0.0" y="100" width="375" height="400"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Image Cell" rowHeight="381" id="45x-K0-sH5" customClass="ImageFieldTableViewCell" customModule="AccountBook" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="100" width="375" height="381"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="45x-K0-sH5" id="jI7-Ii-nhf">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="399"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="380"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aU2-ga-KJf">
-                                            <rect key="frame" x="8" y="8" width="359" height="383.5"/>
+                                            <rect key="frame" x="7" y="16" width="360" height="348.5"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="aU2-ga-KJf" firstAttribute="top" secondItem="jI7-Ii-nhf" secondAttribute="topMargin" id="Idd-Nh-79i"/>
-                                        <constraint firstItem="aU2-ga-KJf" firstAttribute="leading" secondItem="jI7-Ii-nhf" secondAttribute="leadingMargin" id="RDa-eJ-J8e"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="aU2-ga-KJf" secondAttribute="bottom" id="WKz-ud-x5Q"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="aU2-ga-KJf" secondAttribute="trailing" id="rq1-gj-hJH"/>
+                                        <constraint firstItem="aU2-ga-KJf" firstAttribute="trailing" secondItem="jI7-Ii-nhf" secondAttribute="trailingMargin" id="3uQ-Fh-01O"/>
+                                        <constraint firstItem="aU2-ga-KJf" firstAttribute="centerY" secondItem="jI7-Ii-nhf" secondAttribute="centerY" id="fSB-zY-WXd"/>
+                                        <constraint firstItem="aU2-ga-KJf" firstAttribute="top" secondItem="jI7-Ii-nhf" secondAttribute="topMargin" constant="8" id="oGY-0l-esY"/>
+                                        <constraint firstItem="aU2-ga-KJf" firstAttribute="centerX" secondItem="jI7-Ii-nhf" secondAttribute="centerX" id="xmL-it-SvQ"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="imageView" destination="aU2-ga-KJf" id="N01-CO-SkG"/>
+                                    <outlet property="transactionImageView" destination="aU2-ga-KJf" id="c7h-UE-g59"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -136,7 +140,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dbg-fP-X3G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1217" y="197"/>
+            <point key="canvasLocation" x="1216.8" y="196.55172413793105"/>
         </scene>
         <!--List-->
         <scene sceneID="3sZ-L1-97b">
@@ -628,7 +632,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ky8-1p-1vw" id="IXq-59-1OM">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vum-mf-Eaf">
@@ -651,7 +655,7 @@
                                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tAB-55-d43" id="jH3-po-DOZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FY0-D1-hxf">

@@ -85,13 +85,31 @@ class TransactionDetailTableViewController: UITableViewController {
                 fallthrough
             default:
                 // content = "Image"
-                let cell = tableView.dequeueReusableCell(withIdentifier: "Image Cell", for: indexPath)
-                return cell
+                if let cell = tableView.dequeueReusableCell(withIdentifier: "Image Cell", for: indexPath) as? ImageFieldTableViewCell {
+                    cell.imageData = transaction!.imageData
+                    return cell
+                }
             }
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Text Cell", for: indexPath)
         return cell
     }
-
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if transaction != nil {
+            if (indexPath.section == 1 && transaction!.comment == nil)
+                || indexPath.section == 2 {
+                // scale for image
+                let width = tableView.bounds.width
+                if let image = UIImage(data: transaction!.imageData! as Data) {
+                    let imageHeight = image.size.height
+                    let imageWidth = image.size.width
+                    return width / imageWidth * imageHeight
+                }
+            }
+            return UITableViewAutomaticDimension
+        }
+        return CGFloat(0)
+    }
 }
