@@ -149,6 +149,7 @@
                     <navigationItem key="navigationItem" title="Detail" id="Yzq-qa-otN"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="deleteTransactionBarButtonItem" destination="8sZ-JC-7X5" id="f98-r2-3Np"/>
                         <segue destination="H93-n7-oc4" kind="unwind" identifier="Delete Transaction" unwindAction="deleteTransactionFrom:" id="59n-5X-oiU"/>
                     </connections>
                 </tableViewController>
@@ -335,17 +336,17 @@
                     <navigationItem key="navigationItem" title="Home" id="Qze-GI-Iy2">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="PTq-bD-9rE">
                             <connections>
-                                <segue destination="fa2-36-xUr" kind="popoverPresentation" identifier="Select Transaction Type" popoverAnchorBarButtonItem="PTq-bD-9rE" id="BCQ-iX-UPC">
-                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                </segue>
+                                <action selector="newTransactionButton:" destination="5A6-kZ-Afu" id="B3K-HK-G39"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="lastMonthBalance" destination="b44-Ef-bjj" id="aST-cz-XiT"/>
+                        <outlet property="newTransactionButtonItem" destination="PTq-bD-9rE" id="vig-1g-qed"/>
                         <outlet property="thisMonthBalance" destination="JT6-ZO-wuY" id="9j2-lW-wYP"/>
                         <outlet property="thisMonthExpense" destination="lR4-e6-dqY" id="a6P-4F-Dnu"/>
                         <outlet property="thisMonthIncome" destination="eDt-Wz-cnJ" id="9sh-JK-fLn"/>
+                        <segue destination="QwT-XA-mLA" kind="show" identifier="Edit New Transaction" id="tpE-p2-H9z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6wc-Ai-Jfj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -594,7 +595,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mMe-Il-yXF" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="A1S-pc-gfl" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2804" y="-1288"/>
+            <point key="canvasLocation" x="1426" y="-1286"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="FmS-0C-fwF">
@@ -632,94 +633,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M4v-DO-zLV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-498.39999999999998" y="-1285.0074962518743"/>
-        </scene>
-        <!--Transaction Type Selection View Controller-->
-        <scene sceneID="E5N-wF-s98">
-            <objects>
-                <tableViewController id="fa2-36-xUr" customClass="TransactionTypeSelectionViewController" customModule="AccountBook" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="QiK-x0-Bc8">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <sections>
-                            <tableViewSection id="Sno-aJ-6JV">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Ky8-1p-1vw">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ky8-1p-1vw" id="IXq-59-1OM">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vum-mf-Eaf">
-                                                    <rect key="frame" x="0.0" y="8" width="375" height="27"/>
-                                                    <state key="normal" title="Expense"/>
-                                                    <connections>
-                                                        <segue destination="Dn0-Ep-bYY" kind="presentation" identifier="Add Expense" id="NOU-6K-U6l"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="Vum-mf-Eaf" firstAttribute="leading" secondItem="IXq-59-1OM" secondAttribute="leading" id="61g-Wv-hja"/>
-                                                <constraint firstItem="Vum-mf-Eaf" firstAttribute="bottom" secondItem="IXq-59-1OM" secondAttribute="bottomMargin" id="6fZ-2t-EfL"/>
-                                                <constraint firstAttribute="trailing" secondItem="Vum-mf-Eaf" secondAttribute="trailing" id="qMI-YR-6aW"/>
-                                                <constraint firstItem="Vum-mf-Eaf" firstAttribute="top" secondItem="IXq-59-1OM" secondAttribute="topMargin" id="z5q-gh-oAB"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="tAB-55-d43">
-                                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tAB-55-d43" id="jH3-po-DOZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FY0-D1-hxf">
-                                                    <rect key="frame" x="0.0" y="8" width="375" height="27.5"/>
-                                                    <state key="normal" title="Income"/>
-                                                    <connections>
-                                                        <segue destination="Dn0-Ep-bYY" kind="presentation" identifier="Add Income" id="6Z9-J0-l6T"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="FY0-D1-hxf" secondAttribute="trailing" id="0h5-ht-abi"/>
-                                                <constraint firstItem="FY0-D1-hxf" firstAttribute="top" secondItem="jH3-po-DOZ" secondAttribute="topMargin" id="23t-Wg-RHQ"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="FY0-D1-hxf" secondAttribute="bottom" id="Ml0-cD-vfy"/>
-                                                <constraint firstItem="FY0-D1-hxf" firstAttribute="leading" secondItem="jH3-po-DOZ" secondAttribute="leading" id="thn-mD-ktl"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="fa2-36-xUr" id="g9a-B0-HNI"/>
-                            <outlet property="delegate" destination="fa2-36-xUr" id="6Xb-6t-eJE"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zWs-yf-3Ns" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1216.8" y="-1287.7061469265368"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="3XE-oA-j5F">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Dn0-Ep-bYY" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="v6o-IZ-Z4u">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="QwT-XA-mLA" kind="relationship" relationship="rootViewController" id="snf-Ah-XwB"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lvz-ff-eXe" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1983" y="-1286"/>
         </scene>
         <!--List-->
         <scene sceneID="e6A-rz-aef">
@@ -766,6 +679,5 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="t97-DB-AN7"/>
-        <segue reference="NOU-6K-U6l"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -18,6 +18,8 @@ class TransactionListTableViewController: FetchedResultsTableViewController {
                 if let context = container?.viewContext {
                     context.delete(transactionToDelete)
                     try? context.save()
+                    transactionDetailVC.transaction = nil
+                    self.updateUI()
                 }
             }
         }

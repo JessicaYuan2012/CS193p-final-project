@@ -16,6 +16,14 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var thisMonthBalance: UILabel!
     @IBOutlet weak var thisMonthExpense: UILabel!
     @IBOutlet weak var thisMonthIncome: UILabel!
+    @IBOutlet weak var newTransactionButtonItem: UIBarButtonItem!
+    
+    @IBAction func newTransactionButton(_ sender: UIBarButtonItem) {
+        alert.popoverPresentationController?.barButtonItem = newTransactionButtonItem
+        present(alert, animated: true, completion: nil)
+    }
+    
+    private let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
     
     // MARK: - Unwind segue actions
     @IBAction func goBack(from segue: UIStoryboardSegue) {
@@ -142,24 +150,35 @@ class HomeViewController: UIViewController {
     }
     
     // MARK: View Controller Lifecycle
+    private var newTransactionType: String?
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateData()
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        alert.addAction(UIAlertAction(title: "New Expense", style: .default) {
+            [weak self] (action: UIAlertAction) -> Void in
+            self?.newTransactionType = "Expense"
+            self?.performSegue(withIdentifier: "Edit New Transaction", sender: self)
+        })
+        alert.addAction(UIAlertAction(title: "New Income", style: .default) {
+            [weak self] (action: UIAlertAction) -> Void in
+            self?.newTransactionType = "Income"
+            self?.performSegue(withIdentifier: "Edit New Transaction", sender: self)
+        })
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) {
+            (action: UIAlertAction) -> Void in
+        })
+        alert.modalPresentationStyle = .popover
+    }
+    
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination is TransactionTypeSelectionViewController {
-            if let popoverPresentationController = segue.destination.popoverPresentationController {
-                popoverPresentationController.delegate = self
-            }
+        if let destVC = segue.destination as? NewTransactionViewController {
+            destVC.transactionType = self.newTransactionType
         }
-    }
-}
-
-extension HomeViewController: UIPopoverPresentationControllerDelegate {
-    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
-        // always show as a popover
-        return .none
     }
 }

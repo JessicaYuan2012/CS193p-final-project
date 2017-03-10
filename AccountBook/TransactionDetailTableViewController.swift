@@ -11,37 +11,47 @@ import CoreData
 
 class TransactionDetailTableViewController: UITableViewController {
     
+    @IBOutlet weak var deleteTransactionBarButtonItem: UIBarButtonItem!
+    
     @IBAction func deleteTransactionButton(_ sender: UIBarButtonItem) {
-        present(alert, animated: true, completion: nil)
+        if transaction != nil {
+            present(alert, animated: true, completion: nil)
+        }
     }
     
     var transaction: Transaction? {
         didSet {
+            if transaction != nil {
+                self.navigationController?.setToolbarHidden(false, animated: true)
+            } else {
+                self.navigationController?.setToolbarHidden(true, animated: true)
+            }
             tableView.reloadData()
         }
     }
-    private let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+    
+    private let alert = UIAlertController(title: "Delete Confimation", message: "Are you sure you want to delete this transaction?", preferredStyle: .alert)
     
     // MARK: - View Controller Lifecycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.setToolbarHidden(false, animated: true)
-//        self.tabBarController?.tabBar.isHidden = true
-//        self.tabBarController?.tabBar.isOpaque = true
+        if transaction != nil {
+            self.navigationController?.setToolbarHidden(false, animated: true)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.setToolbarHidden(true, animated: true)
-//        self.tabBarController?.tabBar.isHidden = false
-//        self.tabBarController?.tabBar.isOpaque = false
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        alert.addAction(UIAlertAction(title: "Delete Transaction", style: .destructive) {
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive) {
             [weak self] (action: UIAlertAction) -> Void in
-            self?.performSegue(withIdentifier: "Delete Transaction", sender: self)
+            if self?.transaction != nil {
+                self?.performSegue(withIdentifier: "Delete Transaction", sender: self)
+            }
             
         })
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) {

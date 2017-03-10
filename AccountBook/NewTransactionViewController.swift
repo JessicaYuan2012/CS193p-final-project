@@ -20,6 +20,13 @@ class NewTransactionViewController: UITableViewController, UINavigationControlle
     @IBOutlet weak var addImageButton: UIButton!
     
     @IBAction func addImage(_ sender: UIButton) {
+        let ppc = alert.popoverPresentationController
+        ppc?.sourceView = view
+        ppc?.sourceRect = view.bounds
+        ppc?.permittedArrowDirections = UIPopoverArrowDirection.init(rawValue: 0)
+        // CITE: http://stackoverflow.com/questions/31759615/how-to-center-a-popoverview-in-swift
+//        ppc?.sourceRect = CGRect(x: view.bounds.midX, y: view.bounds.midY, width: 0, height: 0) // show it at center
+//        ppc?.permittedArrowDirections = UIPopoverArrowDirection.init(rawValue: 0)
         present(alert, animated: true, completion: nil)
     }
     
@@ -61,15 +68,15 @@ class NewTransactionViewController: UITableViewController, UINavigationControlle
     
     // MARK: - Image Picker
     private let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-    private let picker = UIImagePickerController()
+    private let imagePicker = UIImagePickerController()
     
     private func shootPhoto() {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            picker.allowsEditing = false
-            picker.sourceType = .camera
-            picker.cameraCaptureMode = .photo
-            picker.modalPresentationStyle = .fullScreen
-            present(picker, animated: true, completion: nil)
+            imagePicker.allowsEditing = false
+            imagePicker.sourceType = .camera
+            imagePicker.cameraCaptureMode = .photo
+            imagePicker.modalPresentationStyle = .fullScreen
+            present(imagePicker, animated: true, completion: nil)
         }
         else {
             noCamera()
@@ -90,16 +97,17 @@ class NewTransactionViewController: UITableViewController, UINavigationControlle
     }
     
     private func choosePhotoFromLibrary() {
-        picker.allowsEditing = false
-        picker.sourceType = .photoLibrary
-        picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
-        picker.modalPresentationStyle = .popover
-        let ppc = picker.popoverPresentationController
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
+        imagePicker.modalPresentationStyle = .popover
+        let ppc = imagePicker.popoverPresentationController
         ppc?.sourceView = view
+        ppc?.sourceRect = view.bounds
         // CITE: http://stackoverflow.com/questions/31759615/how-to-center-a-popoverview-in-swift
-        ppc?.sourceRect = CGRect(x: view.bounds.midX, y: view.bounds.midY, width: 0, height: 0) // show it at center
+//        ppc?.sourceRect = CGRect(x: view.bounds.midX, y: view.bounds.midY, width: 0, height: 0) // show it at center
         ppc?.permittedArrowDirections = UIPopoverArrowDirection.init(rawValue: 0)
-        present(picker, animated: true, completion: nil)
+        present(imagePicker, animated: true, completion: nil)
     }
     
     // MARK: View Controller Lifecycle
@@ -112,7 +120,7 @@ class NewTransactionViewController: UITableViewController, UINavigationControlle
     override func viewDidLoad() {
         amountTextField.delegate = self
         commentTextField.delegate = self
-        picker.delegate = self
+        imagePicker.delegate = self
         datePicker.maximumDate = Date()
         addDoneButtonOnKeyboard()
         
@@ -126,11 +134,6 @@ class NewTransactionViewController: UITableViewController, UINavigationControlle
         })
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { (action: UIAlertAction) -> Void in })
         alert.modalPresentationStyle = .popover
-        let ppc = alert.popoverPresentationController
-        ppc?.sourceView = view
-        // CITE: http://stackoverflow.com/questions/31759615/how-to-center-a-popoverview-in-swift
-        ppc?.sourceRect = CGRect(x: view.bounds.midX, y: view.bounds.midY, width: 0, height: 0) // show it at center
-        ppc?.permittedArrowDirections = UIPopoverArrowDirection.init(rawValue: 0)
     }
 }
 
