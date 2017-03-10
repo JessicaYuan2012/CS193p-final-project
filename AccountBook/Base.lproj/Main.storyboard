@@ -149,7 +149,6 @@
                     <navigationItem key="navigationItem" title="Detail" id="Yzq-qa-otN"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="deleteTransactionBarButtonItem" destination="8sZ-JC-7X5" id="f98-r2-3Np"/>
                         <segue destination="H93-n7-oc4" kind="unwind" identifier="Delete Transaction" unwindAction="deleteTransactionFrom:" id="59n-5X-oiU"/>
                     </connections>
                 </tableViewController>
@@ -172,7 +171,7 @@
             </objects>
             <point key="canvasLocation" x="-498" y="-182"/>
         </scene>
-        <!--Home-->
+        <!--Account Book-->
         <scene sceneID="eio-4G-t7H">
             <objects>
                 <viewController id="5A6-kZ-Afu" customClass="HomeViewController" customModule="AccountBook" customModuleProvider="target" sceneMemberID="viewController">
@@ -333,7 +332,7 @@
                             <constraint firstItem="k0f-wa-Q6S" firstAttribute="centerY" secondItem="EfY-jb-YOT" secondAttribute="centerY" id="xW3-Bb-aqv"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Home" id="Qze-GI-Iy2">
+                    <navigationItem key="navigationItem" title="Account Book" id="Qze-GI-Iy2">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="PTq-bD-9rE">
                             <connections>
                                 <action selector="newTransactionButton:" destination="5A6-kZ-Afu" id="B3K-HK-G39"/>

@@ -10,11 +10,18 @@ import UIKit
 import CoreData
 
 class TransactionDetailTableViewController: UITableViewController {
-    
-    @IBOutlet weak var deleteTransactionBarButtonItem: UIBarButtonItem!
-    
     @IBAction func deleteTransactionButton(_ sender: UIBarButtonItem) {
         if transaction != nil {
+            let alert = UIAlertController(title: "Delete Confimation", message: "Are you sure you want to delete this transaction?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Delete", style: .destructive) {
+                [weak self] (action: UIAlertAction) -> Void in
+                if self?.transaction != nil {
+                    self?.performSegue(withIdentifier: "Delete Transaction", sender: self)
+                }
+            })
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) {
+                (action: UIAlertAction) -> Void in
+            })
             present(alert, animated: true, completion: nil)
         }
     }
@@ -29,8 +36,6 @@ class TransactionDetailTableViewController: UITableViewController {
             tableView.reloadData()
         }
     }
-    
-    private let alert = UIAlertController(title: "Delete Confimation", message: "Are you sure you want to delete this transaction?", preferredStyle: .alert)
     
     // MARK: - View Controller Lifecycle
     override func viewWillAppear(_ animated: Bool) {
@@ -47,16 +52,6 @@ class TransactionDetailTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        alert.addAction(UIAlertAction(title: "Delete", style: .destructive) {
-            [weak self] (action: UIAlertAction) -> Void in
-            if self?.transaction != nil {
-                self?.performSegue(withIdentifier: "Delete Transaction", sender: self)
-            }
-            
-        })
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) {
-            (action: UIAlertAction) -> Void in
-        })
     }
     
     // MARK: - Table view data source

@@ -19,12 +19,25 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var newTransactionButtonItem: UIBarButtonItem!
     
     @IBAction func newTransactionButton(_ sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "New Expense", style: .default) {
+            [weak self] (action: UIAlertAction) -> Void in
+            self?.newTransactionType = "Expense"
+            self?.performSegue(withIdentifier: "Edit New Transaction", sender: self)
+        })
+        alert.addAction(UIAlertAction(title: "New Income", style: .default) {
+            [weak self] (action: UIAlertAction) -> Void in
+            self?.newTransactionType = "Income"
+            self?.performSegue(withIdentifier: "Edit New Transaction", sender: self)
+        })
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) {
+            (action: UIAlertAction) -> Void in
+        })
+        alert.modalPresentationStyle = .popover
         alert.popoverPresentationController?.barButtonItem = newTransactionButtonItem
         present(alert, animated: true, completion: nil)
     }
-    
-    private let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-    
+
     // MARK: - Unwind segue actions
     @IBAction func goBack(from segue: UIStoryboardSegue) {
     }
@@ -155,24 +168,6 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateData()
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        alert.addAction(UIAlertAction(title: "New Expense", style: .default) {
-            [weak self] (action: UIAlertAction) -> Void in
-            self?.newTransactionType = "Expense"
-            self?.performSegue(withIdentifier: "Edit New Transaction", sender: self)
-        })
-        alert.addAction(UIAlertAction(title: "New Income", style: .default) {
-            [weak self] (action: UIAlertAction) -> Void in
-            self?.newTransactionType = "Income"
-            self?.performSegue(withIdentifier: "Edit New Transaction", sender: self)
-        })
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) {
-            (action: UIAlertAction) -> Void in
-        })
-        alert.modalPresentationStyle = .popover
     }
     
     // MARK: - Navigation
