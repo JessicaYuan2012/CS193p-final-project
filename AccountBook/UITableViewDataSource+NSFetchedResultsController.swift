@@ -54,3 +54,10 @@ func reformatDateString(_ originalDateString: String) -> String {
     let formattedDateString = dateFormatter.string(from: date)
     return formattedDateString
 }
+
+func reformatDateString(for date: Date) -> String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd"
+    let formattedDateString = dateFormatter.string(from: date)
+    return formattedDateString
+}

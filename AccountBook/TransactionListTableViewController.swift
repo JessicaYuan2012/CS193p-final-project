@@ -118,4 +118,12 @@ class TransactionListTableViewController: FetchedResultsTableViewController, UIS
         updateUI()
     }
     
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let cell = sender as? TransactionEntryTableViewCell {
+            if let targetTableView = segue.destination.contents as? TransactionDetailTableViewController {
+                targetTableView.transaction = cell.transaction
+            }
+        }
+    }
 }

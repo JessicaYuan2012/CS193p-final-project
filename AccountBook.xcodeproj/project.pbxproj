@@ -20,6 +20,7 @@
 		2F1899FE1E713E0E00A47049 /* FetchedResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1899FD1E713E0E00A47049 /* FetchedResultsTableViewController.swift */; };
 		2F189A001E713EED00A47049 /* UITableViewDataSource+NSFetchedResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1899FF1E713EED00A47049 /* UITableViewDataSource+NSFetchedResultsController.swift */; };
 		2F976A6A1E6F35F400E651BF /* TransactionTypeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F976A691E6F35F400E651BF /* TransactionTypeSelectionViewController.swift */; };
+		2FAC68301E721C9C00D7EE69 /* TransactionDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAC682F1E721C9C00D7EE69 /* TransactionDetailTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		2F1899FD1E713E0E00A47049 /* FetchedResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedResultsTableViewController.swift; sourceTree = "<group>"; };
 		2F1899FF1E713EED00A47049 /* UITableViewDataSource+NSFetchedResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewDataSource+NSFetchedResultsController.swift"; sourceTree = "<group>"; };
 		2F976A691E6F35F400E651BF /* TransactionTypeSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionTypeSelectionViewController.swift; sourceTree = "<group>"; };
+		2FAC682F1E721C9C00D7EE69 /* TransactionDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionDetailTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 				2F1899FF1E713EED00A47049 /* UITableViewDataSource+NSFetchedResultsController.swift */,
 				2F1899F91E7135DE00A47049 /* TransactionListTableViewController.swift */,
 				2F1899FB1E71363200A47049 /* TransactionEntryTableViewCell.swift */,
+				2FAC682F1E721C9C00D7EE69 /* TransactionDetailTableViewController.swift */,
 				2F976A691E6F35F400E651BF /* TransactionTypeSelectionViewController.swift */,
 				2F15E5011E6E7B300067BF1A /* NewTransactionViewController.swift */,
 				2F15E4E51E6E5D820067BF1A /* AppDelegate.swift */,
@@ -177,6 +180,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FAC68301E721C9C00D7EE69 /* TransactionDetailTableViewController.swift in Sources */,
 				2F976A6A1E6F35F400E651BF /* TransactionTypeSelectionViewController.swift in Sources */,
 				2F1899FE1E713E0E00A47049 /* FetchedResultsTableViewController.swift in Sources */,
 				2F189A001E713EED00A47049 /* UITableViewDataSource+NSFetchedResultsController.swift in Sources */,
