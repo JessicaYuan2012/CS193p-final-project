@@ -21,6 +21,8 @@
 		2F1899FE1E713E0E00A47049 /* FetchedResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1899FD1E713E0E00A47049 /* FetchedResultsTableViewController.swift */; };
 		2F189A001E713EED00A47049 /* UITableViewDataSource+NSFetchedResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1899FF1E713EED00A47049 /* UITableViewDataSource+NSFetchedResultsController.swift */; };
 		2F387C941E7284770035407A /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F387C931E7284770035407A /* Utilities.swift */; };
+		2F9894551E73AF9D00EACBCA /* PieChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9894541E73AF9D00EACBCA /* PieChartViewController.swift */; };
+		2F9894591E73B3F300EACBCA /* CompositionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9894581E73B3F300EACBCA /* CompositionViewController.swift */; };
 		2FAC68301E721C9C00D7EE69 /* TransactionDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAC682F1E721C9C00D7EE69 /* TransactionDetailTableViewController.swift */; };
 		2FAC68361E724D5A00D7EE69 /* ImageFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAC68351E724D5A00D7EE69 /* ImageFieldTableViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -42,6 +44,8 @@
 		2F1899FD1E713E0E00A47049 /* FetchedResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedResultsTableViewController.swift; sourceTree = "<group>"; };
 		2F1899FF1E713EED00A47049 /* UITableViewDataSource+NSFetchedResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewDataSource+NSFetchedResultsController.swift"; sourceTree = "<group>"; };
 		2F387C931E7284770035407A /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		2F9894541E73AF9D00EACBCA /* PieChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieChartViewController.swift; sourceTree = "<group>"; };
+		2F9894581E73B3F300EACBCA /* CompositionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompositionViewController.swift; sourceTree = "<group>"; };
 		2FAC682F1E721C9C00D7EE69 /* TransactionDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionDetailTableViewController.swift; sourceTree = "<group>"; };
 		2FAC68351E724D5A00D7EE69 /* ImageFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageFieldTableViewCell.swift; sourceTree = "<group>"; };
 		8BB15F4A17E76B553DFDF22A /* Pods-AccountBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccountBook.release.xcconfig"; path = "Pods/Target Support Files/Pods-AccountBook/Pods-AccountBook.release.xcconfig"; sourceTree = "<group>"; };
@@ -97,6 +101,8 @@
 				2F387C911E7281B30035407A /* Transaction Detail Veiw */,
 				2F15E4E51E6E5D820067BF1A /* AppDelegate.swift */,
 				2F387C931E7284770035407A /* Utilities.swift */,
+				2F9894581E73B3F300EACBCA /* CompositionViewController.swift */,
+				2F9894541E73AF9D00EACBCA /* PieChartViewController.swift */,
 				2F1899F81E6FB84C00A47049 /* Core Data */,
 				2F15E4FA1E6E5DA20067BF1A /* Supporting Files */,
 			);
@@ -277,6 +283,7 @@
 				2FAC68301E721C9C00D7EE69 /* TransactionDetailTableViewController.swift in Sources */,
 				2F1899FE1E713E0E00A47049 /* FetchedResultsTableViewController.swift in Sources */,
 				2F189A001E713EED00A47049 /* UITableViewDataSource+NSFetchedResultsController.swift in Sources */,
+				2F9894591E73B3F300EACBCA /* CompositionViewController.swift in Sources */,
 				2F387C941E7284770035407A /* Utilities.swift in Sources */,
 				2F1899FC1E71363200A47049 /* TransactionEntryTableViewCell.swift in Sources */,
 				2F15E4EE1E6E5D820067BF1A /* AccountBook.xcdatamodeld in Sources */,
@@ -285,6 +292,7 @@
 				2F15E4E61E6E5D820067BF1A /* AppDelegate.swift in Sources */,
 				2F15E5021E6E7B300067BF1A /* NewTransactionViewController.swift in Sources */,
 				2FAC68361E724D5A00D7EE69 /* ImageFieldTableViewCell.swift in Sources */,
+				2F9894551E73AF9D00EACBCA /* PieChartViewController.swift in Sources */,
 				2F15E4FE1E6E6EAF0067BF1A /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

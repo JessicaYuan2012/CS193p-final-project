@@ -608,11 +608,60 @@
                     <connections>
                         <segue destination="du9-7v-s8c" kind="relationship" relationship="viewControllers" id="DYY-QK-pMl"/>
                         <segue destination="aVo-AP-xjw" kind="relationship" relationship="viewControllers" id="rLM-Kc-cWR"/>
+                        <segue destination="Cv4-wn-uld" kind="relationship" relationship="viewControllers" id="ouW-Nk-bST"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="faM-zB-3tR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1628" y="81"/>
+        </scene>
+        <!--Composition View Controller-->
+        <scene sceneID="XOz-qq-VPn">
+            <objects>
+                <viewController id="0iS-Pn-Ppb" customClass="CompositionViewController" customModule="AccountBook" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CRL-qq-L81"/>
+                        <viewControllerLayoutGuide type="bottom" id="q4c-c9-SkW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xis-r9-hYd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g3n-TP-RVS">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" white="0.75" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="q4c-c9-SkW" firstAttribute="top" secondItem="g3n-TP-RVS" secondAttribute="bottom" id="6oQ-WZ-9Em"/>
+                            <constraint firstAttribute="trailing" secondItem="g3n-TP-RVS" secondAttribute="trailing" id="VIf-uv-Tcr"/>
+                            <constraint firstItem="g3n-TP-RVS" firstAttribute="leading" secondItem="xis-r9-hYd" secondAttribute="leading" id="ooI-8d-t10"/>
+                            <constraint firstItem="g3n-TP-RVS" firstAttribute="top" secondItem="CRL-qq-L81" secondAttribute="bottom" id="ygf-y5-sVC"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="adQ-Hy-NUS">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="Izr-ZP-NE7">
+                            <rect key="frame" x="113" y="7" width="150" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Expense"/>
+                                <segment title="Income"/>
+                            </segments>
+                            <connections>
+                                <action selector="segmentChanged:" destination="0iS-Pn-Ppb" eventType="valueChanged" id="igi-zE-7ku"/>
+                            </connections>
+                        </segmentedControl>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="contentView" destination="g3n-TP-RVS" id="Eub-n0-fLt"/>
+                        <outlet property="transactionTypeSegmentedControl" destination="Izr-ZP-NE7" id="8Vz-vb-IBu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Dc-3J-ygL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="354.39999999999998" y="855.9220389805098"/>
         </scene>
         <!--Home-->
         <scene sceneID="zTS-Fj-3Kw">
@@ -670,8 +719,61 @@
             </objects>
             <point key="canvasLocation" x="372" y="197"/>
         </scene>
+        <!--Pie Chart View Controller-->
+        <scene sceneID="ddF-UN-MIC">
+            <objects>
+                <viewController storyboardIdentifier="PieChartViewController" id="M5z-Ts-a59" customClass="PieChartViewController" customModule="AccountBook" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9Qm-cl-PWU"/>
+                        <viewControllerLayoutGuide type="bottom" id="Br8-aI-k5f"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="srn-7x-p45">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K4z-9H-iHr" customClass="CPTGraphHostingView">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="0.75" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="K4z-9H-iHr" firstAttribute="leading" secondItem="srn-7x-p45" secondAttribute="leading" id="2ER-WW-xQe"/>
+                            <constraint firstAttribute="trailing" secondItem="K4z-9H-iHr" secondAttribute="trailing" id="9Y6-6E-bPm"/>
+                            <constraint firstItem="Br8-aI-k5f" firstAttribute="top" secondItem="K4z-9H-iHr" secondAttribute="bottom" id="HIK-oB-Cy7"/>
+                            <constraint firstItem="K4z-9H-iHr" firstAttribute="top" secondItem="9Qm-cl-PWU" secondAttribute="bottom" id="bhE-8h-4hS"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="hostView" destination="K4z-9H-iHr" id="Ru6-4s-dxq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ddL-Mh-iWm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1217" y="856"/>
+        </scene>
+        <!--Composition-->
+        <scene sceneID="KrV-9e-HD9">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Cv4-wn-uld" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Composition" image="composition bar" id="l3X-47-oLH"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ERh-Q4-00Q">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="0iS-Pn-Ppb" kind="relationship" relationship="rootViewController" id="DMQ-w6-IwB"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Wd-0q-pH3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-498" y="856"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="composition bar" width="30" height="30"/>
         <image name="default image" width="992" height="680"/>
         <image name="home bar" width="30" height="30"/>
         <image name="list bar" width="30" height="30"/>
