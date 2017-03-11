@@ -12,6 +12,7 @@ import CoreData
 // Cite: https://www.raywenderlich.com/131985/core-plot-tutorial-getting-started
 class CompositionViewController: UIViewController {
     var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
+    
     @IBOutlet weak var transactionTypeSegmentedControl: UISegmentedControl!
     
     @IBAction func segmentChanged(_ sender: UISegmentedControl) {
@@ -28,10 +29,14 @@ class CompositionViewController: UIViewController {
     
     private var expenseCategoryAmountTupleListThisMonth: [(String, Decimal)]? = []
     private var incomeCategoryAmountTupleListThisMonth: [(String, Decimal)]? = []
+    private var expenseCategoryAmountTupleList: [(String, Decimal)]? = []
+    private var incomeCategoryAmountTupleList: [(String, Decimal)]? = []
     
     private func loadData() {
         expenseCategoryAmountTupleListThisMonth?.removeAll()
         incomeCategoryAmountTupleListThisMonth?.removeAll()
+        expenseCategoryAmountTupleList?.removeAll()
+        incomeCategoryAmountTupleList?.removeAll()
         let startOfThisMonth = Date().startOfMonth()
         let thisMonthPredicate = NSPredicate(format: "date >= %@", startOfThisMonth as NSDate)
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Transaction")
@@ -45,8 +50,20 @@ class CompositionViewController: UIViewController {
         
         if let context = container?.viewContext {
             do {
+                var results = try context.fetch(request)
+                for result in results {
+                    let type = (result as! [String: Any])["type"]! as! String
+                    let category = (result as! [String: Any])["category"] as! String
+                    let amount = (result as! [String:Any])[expression.name]! as! Decimal
+                    if type == "Expense" {
+                        expenseCategoryAmountTupleList!.append((category, amount))
+                    } else {
+                        incomeCategoryAmountTupleList!.append((category, amount))
+                    }
+                }
+                
                 request.predicate = thisMonthPredicate
-                let results = try context.fetch(request)
+                results = try context.fetch(request)
                 for result in results {
                     let type = (result as! [String: Any])["type"]! as! String
                     let category = (result as! [String: Any])["category"] as! String
@@ -77,17 +94,17 @@ class CompositionViewController: UIViewController {
     }
     
     private func showViewControllerForSegment(_ index: Int) {
-        let viewController = storyboard!.instantiateViewController(withIdentifier: "PieChartViewController")
+        let viewController = storyboard!.instantiateViewController(withIdentifier: "PieChartPageViewController")
         
-        if let viewController = viewController as? PieChartViewController {
+        if let viewController = viewController as? PieChartPageViewController {
             if index == 0 {
-                viewController.categoryAmountTupleList = expenseCategoryAmountTupleListThisMonth
                 viewController.transactionType = "Expense"
-                viewController.timeScope = "Month"
+                viewController.categoryAmountTupleListThisMonth = expenseCategoryAmountTupleListThisMonth
+                viewController.categoryAmountTupleList = expenseCategoryAmountTupleList
             } else {
-                viewController.categoryAmountTupleList = incomeCategoryAmountTupleListThisMonth
                 viewController.transactionType = "Income"
-                viewController.timeScope = "Month"
+                viewController.categoryAmountTupleListThisMonth = incomeCategoryAmountTupleListThisMonth
+                viewController.categoryAmountTupleList = incomeCategoryAmountTupleList
             }
         }
         

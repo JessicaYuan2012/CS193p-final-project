@@ -21,9 +21,6 @@ class PieChartViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if categoryAmountTupleList != nil {
-            //            for (category, amount) in categoryAmountDictionary! {
-            //                print("\(category) - \(amount)")
-            //            }
             initPlot()
         }
     }
@@ -53,14 +50,14 @@ class PieChartViewController: UIViewController {
         let textStyle: CPTMutableTextStyle = CPTMutableTextStyle()
         textStyle.color = CPTColor.black()
         textStyle.fontName = "HelveticaNeue-Bold"
-        textStyle.fontSize = 16.0
+        textStyle.fontSize = 20.0
         textStyle.textAlignment = .center
         
         // 3 - Set graph title and text style
         if timeScope! == "Month" {
             graph.title = "\(transactionType!) Composition This Month"
         } else {
-            graph.title = "\(transactionType!) Composition"
+            graph.title = "All \(transactionType!) Composition"
         }
         
         graph.titleTextStyle = textStyle
@@ -122,11 +119,9 @@ class PieChartViewController: UIViewController {
             graph.legendDisplacement = CGPoint(x: -8.0, y: 8.0)
         }
     }
-    
 }
 
 extension PieChartViewController: CPTPieChartDataSource, CPTPieChartDelegate {
-    
     func numberOfRecords(for plot: CPTPlot) -> UInt {
         if categoryAmountTupleList == nil {
             return UInt(0)

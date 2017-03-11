@@ -184,22 +184,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="k0f-wa-Q6S">
-                                <rect key="frame" x="40" y="208.5" width="295.5" height="250"/>
+                                <rect key="frame" x="15.5" y="202.5" width="344.5" height="263"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="fbh-ER-zyZ">
-                                        <rect key="frame" x="54" y="0.0" width="188" height="115"/>
+                                        <rect key="frame" x="78.5" y="0.0" width="188" height="121.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Balance" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kHl-5y-QWd">
-                                                <rect key="frame" x="39.5" y="0.0" width="108.5" height="39.5"/>
-                                                <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="30"/>
-                                                <color key="textColor" red="0.1225835457" green="0.52491009239999997" blue="0.9984729886" alpha="0.60565603599999995" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <rect key="frame" x="30.5" y="0.0" width="127" height="46"/>
+                                                <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="35"/>
+                                                <color key="textColor" red="0.32893285155296326" green="0.7812531590461731" blue="0.98977404832839966" alpha="0.70360659246575341" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <variation key="heightClass=regular-widthClass=regular">
                                                     <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="60"/>
                                                 </variation>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="zDo-e2-tm3">
-                                                <rect key="frame" x="0.0" y="44.5" width="188" height="70.5"/>
+                                                <rect key="frame" x="0.0" y="51" width="188" height="70.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="xD4-nB-clx">
                                                         <rect key="frame" x="0.0" y="0.0" width="188" height="30.5"/>
@@ -255,19 +255,19 @@
                                         <variation key="heightClass=regular-widthClass=regular" spacing="10"/>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="tJf-ny-CSw">
-                                        <rect key="frame" x="0.0" y="135" width="295.5" height="115"/>
+                                        <rect key="frame" x="0.0" y="141.5" width="344.5" height="121.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Up till now this month" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dkc-BZ-9Ue">
-                                                <rect key="frame" x="0.0" y="0.0" width="295.5" height="39.5"/>
-                                                <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="30"/>
-                                                <color key="textColor" red="0.1225835457" green="0.52491009239999997" blue="0.9984729886" alpha="0.60565603599999995" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="344.5" height="46"/>
+                                                <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="35"/>
+                                                <color key="textColor" red="0.32893285160000002" green="0.78125315900000003" blue="0.98977404830000004" alpha="0.70360659250000002" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <variation key="heightClass=regular-widthClass=regular">
                                                     <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="60"/>
                                                 </variation>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="D6H-jG-J2r">
-                                                <rect key="frame" x="62.5" y="44.5" width="171" height="70.5"/>
+                                                <rect key="frame" x="87" y="51" width="171" height="70.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="WCn-7w-yiS">
                                                         <rect key="frame" x="0.0" y="0.0" width="171" height="30.5"/>
@@ -719,6 +719,14 @@
             </objects>
             <point key="canvasLocation" x="372" y="197"/>
         </scene>
+        <!--Pie Chart Page View Controller-->
+        <scene sceneID="CeP-kd-9Zg">
+            <objects>
+                <pageViewController storyboardIdentifier="PieChartPageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="qYC-c8-zyq" customClass="PieChartPageViewController" customModule="AccountBook" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6ty-YN-Af5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1246" y="856"/>
+        </scene>
         <!--Pie Chart View Controller-->
         <scene sceneID="ddF-UN-MIC">
             <objects>
@@ -750,7 +758,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ddL-Mh-iWm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1217" y="856"/>
+            <point key="canvasLocation" x="2124" y="856"/>
         </scene>
         <!--Composition-->
         <scene sceneID="KrV-9e-HD9">
