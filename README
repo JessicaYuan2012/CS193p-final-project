@@ -1,0 +1,49 @@
+1. Table View API - 4 points (2 breadth, 2 depth)
+static table view for Add Transaction page, plain-style dynamic table view for Transaction List page, grouped style dynamic table view for Transaction Detail page;
+custom cell;
+table view for Transaction List page works with NSFetchedResultsControllerDelegate
+
+2. Core Data - 3 points (2 breadth, 1 depth)
+simple schema, but implement insertion, deletion of data, and complicated queries to get data in home page and for plot
+
+3. Storyboard Design - 1 point
+Navigation, TabBar, SplitView, ButtomBar
+
+4. Controls API - 2 points
+Button, Label, Picker, Segmented Control, Text Field
+
+5. Segue - 2 points
+Show Detail, Modal, Unwind;
+perform segue from code
+
+6. Popover, Alert/ActionSheet - 2 points
+ActionSheet for several buttons(e.g. add transaction button, add image button, delete transaction button);
+Alert for add image - take photo on simulator;
+Popover for add image - choose photo from library
+
+7. Autolayout - 1 point
+constraints;
+different font size for home page
+
+8. Core Plot - 2 points
+
+9. Image Picker - 1 points
+
+10. Date API - 1 points
+(in Utilities.swift)
+extension for Date class to get specific dates;
+reformat date string for display
+
+11. Page View Controller (NCIL) - 1*2 = 2 points
+for pie chart
+
+12. Search Controller (NCIL) - 2*2 = 4 points
+in Transaction List page with search bar, used to filter and search transactions(search field include transaction category and comment)
+
+13. Date Picker (NCIL) - 1*2 = 2 points
+in New Transaction page, set maximum date
+
+14. Miscellaneous - 1 point
+
+...
+
