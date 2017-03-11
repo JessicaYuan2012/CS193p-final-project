@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B6A7F0D492E13EABDF82554 /* Pods_AccountBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C0A8944FB9249AF48D4A818 /* Pods_AccountBook.framework */; };
 		2F15E4E61E6E5D820067BF1A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F15E4E51E6E5D820067BF1A /* AppDelegate.swift */; };
 		2F15E4EB1E6E5D820067BF1A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F15E4E91E6E5D820067BF1A /* Main.storyboard */; };
 		2F15E4EE1E6E5D820067BF1A /* AccountBook.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2F15E4EC1E6E5D820067BF1A /* AccountBook.xcdatamodeld */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1C0A8944FB9249AF48D4A818 /* Pods_AccountBook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AccountBook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F15E4E21E6E5D820067BF1A /* AccountBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AccountBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F15E4E51E6E5D820067BF1A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2F15E4EA1E6E5D820067BF1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -42,6 +44,8 @@
 		2F387C931E7284770035407A /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		2FAC682F1E721C9C00D7EE69 /* TransactionDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionDetailTableViewController.swift; sourceTree = "<group>"; };
 		2FAC68351E724D5A00D7EE69 /* ImageFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageFieldTableViewCell.swift; sourceTree = "<group>"; };
+		8BB15F4A17E76B553DFDF22A /* Pods-AccountBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccountBook.release.xcconfig"; path = "Pods/Target Support Files/Pods-AccountBook/Pods-AccountBook.release.xcconfig"; sourceTree = "<group>"; };
+		CA8677C40F39B50443779658 /* Pods-AccountBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccountBook.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AccountBook/Pods-AccountBook.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,17 +53,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B6A7F0D492E13EABDF82554 /* Pods_AccountBook.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04171062B124213587926D57 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CA8677C40F39B50443779658 /* Pods-AccountBook.debug.xcconfig */,
+				8BB15F4A17E76B553DFDF22A /* Pods-AccountBook.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		2F15E4D91E6E5D810067BF1A = {
 			isa = PBXGroup;
 			children = (
 				2F15E4E41E6E5D820067BF1A /* AccountBook */,
 				2F15E4E31E6E5D820067BF1A /* Products */,
+				04171062B124213587926D57 /* Pods */,
+				44EEE4DF0133FBEF63F199D4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -126,6 +142,14 @@
 			name = "Transaction Detail Veiw";
 			sourceTree = "<group>";
 		};
+		44EEE4DF0133FBEF63F199D4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1C0A8944FB9249AF48D4A818 /* Pods_AccountBook.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -133,9 +157,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2F15E4F71E6E5D820067BF1A /* Build configuration list for PBXNativeTarget "AccountBook" */;
 			buildPhases = (
+				17FF4C303E4B771ABD192491 /* [CP] Check Pods Manifest.lock */,
 				2F15E4DE1E6E5D810067BF1A /* Sources */,
 				2F15E4DF1E6E5D810067BF1A /* Frameworks */,
 				2F15E4E01E6E5D810067BF1A /* Resources */,
+				10467B9CEC210424DF0F5B68 /* [CP] Embed Pods Frameworks */,
+				DAE08A02DDC1695ED594A4AB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -193,6 +220,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		10467B9CEC210424DF0F5B68 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AccountBook/Pods-AccountBook-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		17FF4C303E4B771ABD192491 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DAE08A02DDC1695ED594A4AB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AccountBook/Pods-AccountBook-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2F15E4DE1E6E5D810067BF1A /* Sources */ = {
@@ -331,6 +406,7 @@
 		};
 		2F15E4F81E6E5D820067BF1A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA8677C40F39B50443779658 /* Pods-AccountBook.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = QD5228V68Q;
@@ -344,6 +420,7 @@
 		};
 		2F15E4F91E6E5D820067BF1A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8BB15F4A17E76B553DFDF22A /* Pods-AccountBook.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = QD5228V68Q;
