@@ -23,7 +23,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ihb-yV-17y" id="MiZ-gq-yi2">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DAE-6P-30s">
@@ -94,14 +94,14 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Text Cell" textLabel="zAy-XQ-jWW" style="IBUITableViewCellStyleDefault" id="wYt-Ld-aGT">
-                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wYt-Ld-aGT" id="6DD-HH-Euk">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zAy-XQ-jWW">
-                                            <rect key="frame" x="15" y="0.0" width="345" height="43"/>
+                                            <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -111,10 +111,10 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Image Cell" rowHeight="188" id="45x-K0-sH5" customClass="ImageFieldTableViewCell" customModule="AccountBook" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="100" width="375" height="188"/>
+                                <rect key="frame" x="0.0" y="99.5" width="375" height="188"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="45x-K0-sH5" id="jI7-Ii-nhf">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="187"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="187.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aU2-ga-KJf">
@@ -690,7 +690,7 @@
         <scene sceneID="e6A-rz-aef">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fT9-Na-ylu" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="List" image="list bar" id="cLx-8L-eQh"/>
+                    <tabBarItem key="tabBarItem" title="List" image="list" id="cLx-8L-eQh"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Qcc-zc-cLw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -853,7 +853,7 @@
         <!--Bar Chart View Controller-->
         <scene sceneID="LVC-bq-rYE">
             <objects>
-                <viewController id="9O9-v6-hSh" customClass="BarChartViewController" customModule="AccountBook" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BarChartViewController" id="9O9-v6-hSh" customClass="BarChartViewController" customModule="AccountBook" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UZp-Xe-x1i"/>
                         <viewControllerLayoutGuide type="bottom" id="Ef3-10-J77"/>
@@ -908,7 +908,6 @@
         <image name="default image" width="992" height="680"/>
         <image name="home" width="30" height="30"/>
         <image name="list" width="30" height="30"/>
-        <image name="list bar" width="30" height="30"/>
         <image name="pie chart" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>

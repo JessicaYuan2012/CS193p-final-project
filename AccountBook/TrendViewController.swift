@@ -14,6 +14,8 @@ class TrendViewController: UIViewController {
     @IBOutlet weak var timeScopeSegmentedControl: UISegmentedControl!
 
     @IBAction func segmentChanged(_ sender: UISegmentedControl) {
+        let index = sender.selectedSegmentIndex
+        showViewControllerForSegment(index)
     }
     
     @IBOutlet weak var contentView: UIView!
@@ -132,10 +134,10 @@ class TrendViewController: UIViewController {
                 offset += 1
                 beginDate = endDate
             }
-            let monthNum = yearIncomeData.count
-            for i in 0..<monthNum {
-                print("\(i+1)th month in this year: expense \(yearExpenseData[i]), income \(yearIncomeData[i])")
-            }
+//            let monthNum = yearIncomeData.count
+//            for i in 0..<monthNum {
+//                print("\(i+1)th month in this year: expense \(yearExpenseData[i]), income \(yearIncomeData[i])")
+//            }
         }
         
         if let context = container?.viewContext {
@@ -148,6 +150,41 @@ class TrendViewController: UIViewController {
             }
         }
         
+        showViewControllerForSegment(timeScopeSegmentedControl.selectedSegmentIndex)
+    }
+    
+    private var activeViewController: UIViewController? {
+        didSet {
+            oldValue?.view.removeFromSuperview()
+            
+            guard let activeViewController = activeViewController else { return }
+            activeViewController.view.frame = contentView.bounds
+            contentView.addSubview(activeViewController.view)
+            activeViewController.didMove(toParentViewController: self)
+        }
+    }
+    
+    private func showViewControllerForSegment(_ index: Int) {
+        let viewController = storyboard!.instantiateViewController(withIdentifier: "BarChartViewController")
+        
+        if let viewController = viewController as? BarChartViewController {
+            switch index {
+            case 0:
+                viewController.timeScope = "Last 7 Days"
+                viewController.expenseList = weekExpenseData
+                viewController.incomeList = weekIncomeData
+            case 1:
+                viewController.timeScope = "This Month"
+                viewController.expenseList = monthExpenseData
+                viewController.incomeList = monthIncomeData
+            default:
+                viewController.timeScope = "This Year"
+                viewController.expenseList = yearExpenseData
+                viewController.incomeList = yearIncomeData
+            }
+        }
+        
+        activeViewController = viewController
     }
     
 }
