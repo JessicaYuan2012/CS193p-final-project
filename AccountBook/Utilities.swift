@@ -102,3 +102,17 @@ func reformatDateString(for date: Date) -> String {
     let formattedDateString = dateFormatter.string(from: date)
     return formattedDateString
 }
+
+func getMonthDayDateString(for date: Date) -> String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "MMM d"
+    let formattedDateString = dateFormatter.string(from: date)
+    return formattedDateString
+}
+
+func getMonthString(for date: Date) -> String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "MMM"
+    let formattedDateString = dateFormatter.string(from: date)
+    return formattedDateString
+}

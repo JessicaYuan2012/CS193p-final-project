@@ -19,13 +19,21 @@ class BarChartViewController: UIViewController {
     var timeScope: String?
     var expenseList: [Decimal]?
     var incomeList: [Decimal]?
+    var balanceList: [Decimal]?
     
-    private let BarWidth = 0.25
-    private let BarInitialX = 0.25
-    
+    fileprivate let BarWidth = 0.25
+    fileprivate let BarInitialX = 0.25
+    fileprivate var amountAnnotation: CPTPlotSpaceAnnotation?
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        initPlot()
+        if expenseList != nil, expenseList!.count > 0 {
+            balanceList = []
+            for idx in 0..<expenseList!.count {
+                balanceList!.append(incomeList![idx] - expenseList![idx])
+            }
+            initPlot()
+        }
     }
     
     private func initPlot() {
@@ -33,6 +41,7 @@ class BarChartViewController: UIViewController {
         configureGraph()
         configureChart()
         configureAxes()
+        configureLegend()
     }
     
     private func configureHostView() {
@@ -49,9 +58,9 @@ class BarChartViewController: UIViewController {
         graph.apply(CPTTheme(named: CPTThemeName.plainWhiteTheme))
         graph.plotAreaFrame?.borderLineStyle = nil
         graph.fill = CPTFill(color: CPTColor.clear())
-        graph.paddingBottom = 30.0
+        graph.paddingBottom = 40.0
         graph.paddingLeft = 60.0
-        graph.paddingTop = 30.0
+        graph.paddingTop = 10.0
         graph.paddingRight = 30.0
         
         // 3 - Set up styles
@@ -70,7 +79,7 @@ class BarChartViewController: UIViewController {
         // 4 - Set up plot space
         let xMin = 0.0
         let xMax = Double(expenseList!.count)
-        let yMin = 0.0
+        let yMin = min(0.0, (balanceList!.min()! as NSDecimalNumber).doubleValue)
         let yMax = ((1.4 * max(expenseList!.max()!, incomeList!.max()!)) as NSDecimalNumber).doubleValue
         guard let plotSpace = graph.defaultPlotSpace as? CPTXYPlotSpace else { return }
         plotSpace.xRange = CPTPlotRange(locationDecimal: CPTDecimalFromDouble(xMin), lengthDecimal: CPTDecimalFromDouble(xMax - xMin))
@@ -111,26 +120,53 @@ class BarChartViewController: UIViewController {
         let axisLineStyle = CPTMutableLineStyle()
         axisLineStyle.lineWidth = 2.0
         axisLineStyle.lineColor = CPTColor.black()
+        
         // 2 - Get the graph's axis set
         guard let axisSet = hostView.hostedGraph?.axisSet as? CPTXYAxisSet else { return }
+        
         // 3 - Configure the x-axis
-//        if let xAxis = axisSet.xAxis {
-//            xAxis.labelingPolicy = .none
-//            xAxis.majorIntervalLength = 1
-//            xAxis.axisLineStyle = axisLineStyle
-//            var majorTickLocations = Set<NSNumber>()
-//            var axisLabels = Set<CPTAxisLabel>()
-//            for (idx, rate) in rates.enumerated() {
-//                majorTickLocations.insert(NSNumber(value: idx))
-//                let label = CPTAxisLabel(text: "\(rate.date)", textStyle: CPTTextStyle())
-//                label.tickLocation = NSNumber(value: idx)
-//                label.offset = 5.0
-//                label.alignment = .left
-//                axisLabels.insert(label)
-//            }
-//            xAxis.majorTickLocations = majorTickLocations
-//            xAxis.axisLabels = axisLabels
-//        }
+        let labelTextStyle = CPTMutableTextStyle()
+        if view.bounds.width > view.bounds.height {
+            labelTextStyle.fontSize = 16.0
+        } else {
+            labelTextStyle.fontSize = 12.0
+        }
+        
+        if let xAxis = axisSet.xAxis {
+            xAxis.labelingPolicy = .none
+            xAxis.majorIntervalLength = 1
+            xAxis.axisLineStyle = axisLineStyle
+            var majorTickLocations = Set<NSNumber>()
+            var axisLabels = Set<CPTAxisLabel>()
+            if timeScope! == "Last 7 Days" {
+                for idx in 0..<expenseList!.count {
+                    majorTickLocations.insert(NSNumber(value: idx))
+                    let label = CPTAxisLabel(text: getWeekDateStringAtIndex(idx), textStyle: labelTextStyle)
+                    label.tickLocation = NSNumber(value: idx)
+                    label.alignment = .left
+                    axisLabels.insert(label)
+                }
+            } else if timeScope! == "This Month" {
+                for idx in 0..<expenseList!.count {
+                    majorTickLocations.insert(NSNumber(value: idx))
+                    let label = CPTAxisLabel(text: String(idx+1), textStyle: labelTextStyle)
+                    label.tickLocation = NSNumber(value: idx)
+                    label.alignment = .left
+                    axisLabels.insert(label)
+                }
+            } else {
+                for idx in 0..<expenseList!.count {
+                    majorTickLocations.insert(NSNumber(value: idx))
+                    let label = CPTAxisLabel(text: getMonthStringAtIndex(idx), textStyle: labelTextStyle)
+                    label.tickLocation = NSNumber(value: idx)
+                    label.alignment = .left
+                    axisLabels.insert(label)
+                }
+            }
+            xAxis.majorTickLocations = majorTickLocations
+            xAxis.axisLabels = axisLabels
+        }
+        
         // 4 - Configure the y-axis
         if let yAxis = axisSet.yAxis {
             yAxis.labelingPolicy = .fixedInterval
@@ -149,6 +185,35 @@ class BarChartViewController: UIViewController {
         }
     }
     
+    private func configureLegend() {
+        // 1 - Get graph instance
+        guard let graph = hostView.hostedGraph else { return }
+        
+        // 2 - Create legend
+        let theLegend = CPTLegend(graph: graph)
+        
+        // 3 - Configure legend
+        theLegend.numberOfColumns = 1
+        theLegend.fill = CPTFill(color: CPTColor.white())
+        let textStyle = CPTMutableTextStyle()
+        textStyle.fontSize = 12
+        theLegend.textStyle = textStyle
+        
+        // 4 - Add legend to graph
+        graph.legend = theLegend
+        graph.legendAnchor = .topLeft
+        graph.legendDisplacement = CGPoint(x: 10, y: -10)
+    }
+    
+    private func getWeekDateStringAtIndex(_ index: Int) -> String {
+        let date = Date().daysBefore(offset: index-6)
+        return getMonthDayDateString(for: date)
+    }
+    
+    private func getMonthStringAtIndex(_ index: Int) -> String {
+        let date = Date().startOfYear().monthsBefore(offset: index)
+        return getMonthString(for: date)
+    }
 }
 
 extension BarChartViewController: CPTBarPlotDataSource, CPTBarPlotDelegate {
@@ -166,13 +231,68 @@ extension BarChartViewController: CPTBarPlotDataSource, CPTBarPlotDelegate {
                 return incomeList![Int(idx)]
             }
             if plot == balancePlot {
-                return incomeList![Int(idx)] - expenseList![Int(idx)]
+                return balanceList![Int(idx)]
             }
         }
         return idx
     }
     
     func barPlot(_ plot: CPTBarPlot, barWasSelectedAtRecord idx: UInt, with event: UIEvent) {
+        if plot.isHidden == true {
+            return
+        }
+        var plotIndex: Int = -1
+        if plot == expensePlot {
+            plotIndex = 0
+        }
+        if plot == incomePlot {
+            plotIndex = 1
+        }
+        if plot == balancePlot {
+            plotIndex = 2
+        }
         
+        guard let result = number(for: plot,
+                                 field: UInt(CPTBarPlotField.barTip.rawValue),
+                                 record: idx) as? Decimal else { return }
+        
+        if result != Decimal(0.0) {
+            let textStyle = CPTMutableTextStyle()
+            textStyle.fontSize = 12.0
+            textStyle.fontName = "HelveticaNeue-Bold"
+            // 3 - Create annotation
+            amountAnnotation?.annotationHostLayer?.removeAnnotation(amountAnnotation)
+            amountAnnotation = CPTPlotSpaceAnnotation(plotSpace: plot.plotSpace!, anchorPlotPoint: [0,0])
+            let textLayer = CPTTextLayer(text: getCurrencyString(for: result), style: textStyle)
+            amountAnnotation?.contentLayer = textLayer
+            let x = CGFloat(idx) + CGFloat(self.BarInitialX) + (CGFloat(plotIndex) * CGFloat(self.BarWidth))
+            var y: CGFloat = CGFloat(0.0)
+            if result > 0 {
+                y = CGFloat(result as NSNumber) + 50
+            } else {
+                y = CGFloat(result as NSNumber) - 50
+            }
+            amountAnnotation?.anchorPlotPoint = [NSNumber(cgFloat: x), NSNumber(cgFloat: y)]
+            // 8 - Add the annotation
+            let plotArea = plot.graph?.plotAreaFrame?.plotArea
+            plotArea?.addAnnotation(amountAnnotation)
+        }
+    }
+    
+
+    func legendTitle(for barPlot: CPTBarPlot, record idx: UInt) -> String? {
+        if idx > 0 {
+            return nil
+        }
+        if barPlot == expensePlot {
+            return "Expense"
+        }
+        if barPlot == incomePlot {
+            return "Income"
+        }
+        if barPlot == balancePlot {
+            return "Balance"
+        }
+        return nil
     }
 }
