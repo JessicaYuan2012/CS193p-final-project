@@ -79,7 +79,10 @@ class BarChartViewController: UIViewController {
         // 4 - Set up plot space
         let xMin = 0.0
         let xMax = Double(expenseList!.count)
-        let yMin = min(0.0, (balanceList!.min()! as NSDecimalNumber).doubleValue)
+        var yMin: Double = 0.0
+        if timeScope! == "This Year" {
+            yMin = min(0.0, (balanceList!.min()! as NSDecimalNumber).doubleValue)
+        }
         let yMax = ((1.4 * max(expenseList!.max()!, incomeList!.max()!)) as NSDecimalNumber).doubleValue
         guard let plotSpace = graph.defaultPlotSpace as? CPTXYPlotSpace else { return }
         plotSpace.xRange = CPTPlotRange(locationDecimal: CPTDecimalFromDouble(xMin), lengthDecimal: CPTDecimalFromDouble(xMax - xMin))
@@ -103,7 +106,11 @@ class BarChartViewController: UIViewController {
         // 3 - Add plots to graph
         guard let graph = hostView.hostedGraph else { return }
         var barX = BarInitialX
-        let plots = [expensePlot!, incomePlot!, balancePlot!]
+        
+        var plots = [expensePlot!, incomePlot!]
+        if timeScope! == "This Year" {
+            plots.append(balancePlot!)
+        }
         for plot: CPTBarPlot in plots {
             plot.dataSource = self
             plot.delegate = self
@@ -252,28 +259,30 @@ extension BarChartViewController: CPTBarPlotDataSource, CPTBarPlotDelegate {
             plotIndex = 2
         }
         
-        guard let result = number(for: plot,
+        guard let amount = number(for: plot,
                                  field: UInt(CPTBarPlotField.barTip.rawValue),
                                  record: idx) as? Decimal else { return }
         
-        if result != Decimal(0.0) {
+        if amount != Decimal(0.0) {
             let textStyle = CPTMutableTextStyle()
             textStyle.fontSize = 12.0
             textStyle.fontName = "HelveticaNeue-Bold"
-            // 3 - Create annotation
+            // Create annotation
             amountAnnotation?.annotationHostLayer?.removeAnnotation(amountAnnotation)
             amountAnnotation = CPTPlotSpaceAnnotation(plotSpace: plot.plotSpace!, anchorPlotPoint: [0,0])
-            let textLayer = CPTTextLayer(text: getCurrencyString(for: result), style: textStyle)
+            // Create text layer for annotation
+            let textLayer = CPTTextLayer(text: getCurrencyString(for: amount), style: textStyle)
             amountAnnotation?.contentLayer = textLayer
+            // Get the anchor point for annotation
             let x = CGFloat(idx) + CGFloat(self.BarInitialX) + (CGFloat(plotIndex) * CGFloat(self.BarWidth))
             var y: CGFloat = CGFloat(0.0)
-            if result > 0 {
-                y = CGFloat(result as NSNumber) + 50
+            if amount > 0 {
+                y = CGFloat(amount as NSNumber) + 50
             } else {
-                y = CGFloat(result as NSNumber) - 50
+                y = CGFloat(amount as NSNumber) - 50
             }
             amountAnnotation?.anchorPlotPoint = [NSNumber(cgFloat: x), NSNumber(cgFloat: y)]
-            // 8 - Add the annotation
+            // Add the annotation
             let plotArea = plot.graph?.plotAreaFrame?.plotArea
             plotArea?.addAnnotation(amountAnnotation)
         }
