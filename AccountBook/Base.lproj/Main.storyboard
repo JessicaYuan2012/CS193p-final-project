@@ -76,6 +76,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="All Transactions" id="3vM-yR-jmv"/>
+                    <connections>
+                        <segue destination="6zw-4y-JAV" kind="presentation" identifier="Edit New Transaction" id="qq2-c0-1Wq"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lhi-Ld-6PS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -161,7 +164,7 @@
         <scene sceneID="3sZ-L1-97b">
             <objects>
                 <splitViewController id="aVo-AP-xjw" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="List" image="list bar" id="Zm2-ec-xQ6"/>
+                    <tabBarItem key="tabBarItem" title="List" image="list" id="Zm2-ec-xQ6"/>
                     <connections>
                         <segue destination="fT9-Na-ylu" kind="relationship" relationship="masterViewController" id="020-j6-tZS"/>
                         <segue destination="M63-98-vH3" kind="relationship" relationship="detailViewController" id="b3g-UP-SIl"/>
@@ -609,6 +612,7 @@
                         <segue destination="du9-7v-s8c" kind="relationship" relationship="viewControllers" id="DYY-QK-pMl"/>
                         <segue destination="aVo-AP-xjw" kind="relationship" relationship="viewControllers" id="rLM-Kc-cWR"/>
                         <segue destination="Cv4-wn-uld" kind="relationship" relationship="viewControllers" id="ouW-Nk-bST"/>
+                        <segue destination="UMJ-1J-Ria" kind="relationship" relationship="viewControllers" id="7c6-Yy-a7S"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="faM-zB-3tR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -667,7 +671,7 @@
         <scene sceneID="zTS-Fj-3Kw">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="du9-7v-s8c" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" image="home bar" id="Nfi-23-MFo"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="home" id="Nfi-23-MFo"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Pdi-Ne-uK7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -758,13 +762,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ddL-Mh-iWm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2124" y="856"/>
+            <point key="canvasLocation" x="2084" y="856"/>
         </scene>
         <!--Composition-->
         <scene sceneID="KrV-9e-HD9">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Cv4-wn-uld" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Composition" image="composition bar" id="l3X-47-oLH"/>
+                    <tabBarItem key="tabBarItem" title="Composition" image="pie chart" id="l3X-47-oLH"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ERh-Q4-00Q">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -797,14 +801,118 @@
             </objects>
             <point key="canvasLocation" x="1424.8" y="-1286.8065967016494"/>
         </scene>
+        <!--Trend View Controller-->
+        <scene sceneID="cjB-zk-JGf">
+            <objects>
+                <viewController id="bMr-sd-zKR" customClass="TrendViewController" customModule="AccountBook" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bQm-9L-5VT"/>
+                        <viewControllerLayoutGuide type="bottom" id="VmB-gg-ACu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ahz-cT-uEX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8zL-RN-xs2">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" white="0.75" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="8zL-RN-xs2" firstAttribute="leading" secondItem="ahz-cT-uEX" secondAttribute="leading" id="IBf-Fg-NFe"/>
+                            <constraint firstItem="VmB-gg-ACu" firstAttribute="top" secondItem="8zL-RN-xs2" secondAttribute="bottom" id="WLs-6F-yhQ"/>
+                            <constraint firstItem="8zL-RN-xs2" firstAttribute="top" secondItem="bQm-9L-5VT" secondAttribute="bottom" id="esF-Ha-v4r"/>
+                            <constraint firstAttribute="trailing" secondItem="8zL-RN-xs2" secondAttribute="trailing" id="uRv-DO-hhl"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="6o2-58-gdU">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="j9W-pc-afh">
+                            <rect key="frame" x="107" y="7" width="161" height="31"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Week"/>
+                                <segment title="Month"/>
+                                <segment title="Year"/>
+                            </segments>
+                            <connections>
+                                <action selector="segmentChanged:" destination="bMr-sd-zKR" eventType="valueChanged" id="WG2-4j-Vqj"/>
+                            </connections>
+                        </segmentedControl>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="contentView" destination="8zL-RN-xs2" id="sew-ZC-Gnl"/>
+                        <outlet property="timeScopeSegmentedControl" destination="j9W-pc-afh" id="Zkg-Ub-c8d"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wSv-L9-N9f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="354" y="1614"/>
+        </scene>
+        <!--Bar Chart View Controller-->
+        <scene sceneID="LVC-bq-rYE">
+            <objects>
+                <viewController id="9O9-v6-hSh" customClass="BarChartViewController" customModule="AccountBook" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="UZp-Xe-x1i"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ef3-10-J77"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ILc-UD-VfJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1fF-f4-c5K" customClass="CPTGraphHostingView">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="0.75" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="1fF-f4-c5K" firstAttribute="top" secondItem="UZp-Xe-x1i" secondAttribute="bottom" id="2eb-SD-IZC"/>
+                            <constraint firstItem="1fF-f4-c5K" firstAttribute="leading" secondItem="ILc-UD-VfJ" secondAttribute="leading" id="J2T-vf-JBb"/>
+                            <constraint firstItem="Ef3-10-J77" firstAttribute="top" secondItem="1fF-f4-c5K" secondAttribute="bottom" id="dYq-8f-K4z"/>
+                            <constraint firstAttribute="trailing" secondItem="1fF-f4-c5K" secondAttribute="trailing" id="uQK-2a-Yds"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="hostView" destination="1fF-f4-c5K" id="V3M-Ky-bbZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8x8-WQ-zUo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1246" y="1613"/>
+        </scene>
+        <!--Trend-->
+        <scene sceneID="Bvc-vn-Jix">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="UMJ-1J-Ria" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Trend" image="bar chart" id="32q-RS-yQo"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rN2-5z-Xu2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="bMr-sd-zKR" kind="relationship" relationship="rootViewController" id="KMw-vv-Gv5"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V6q-K7-sK6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-498" y="1614"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="composition bar" width="30" height="30"/>
+        <image name="bar chart" width="30" height="30"/>
         <image name="default image" width="992" height="680"/>
-        <image name="home bar" width="30" height="30"/>
+        <image name="home" width="30" height="30"/>
+        <image name="list" width="30" height="30"/>
         <image name="list bar" width="30" height="30"/>
+        <image name="pie chart" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="t97-DB-AN7"/>
+        <segue reference="b3g-UP-SIl"/>
+        <segue reference="qq2-c0-1Wq"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -18,6 +18,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var thisMonthIncome: UILabel!
     @IBOutlet weak var newTransactionButtonItem: UIBarButtonItem!
     
+    private var newTransactionType: String?
     @IBAction func newTransactionButton(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "New Expense", style: .default) {
@@ -163,8 +164,6 @@ class HomeViewController: UIViewController {
     }
     
     // MARK: View Controller Lifecycle
-    private var newTransactionType: String?
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateData()

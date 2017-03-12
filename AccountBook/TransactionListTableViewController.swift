@@ -24,6 +24,7 @@ class TransactionListTableViewController: FetchedResultsTableViewController {
             }
         }
     }
+    
     var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     
     var fetchedResultsController: NSFetchedResultsController<Transaction>?

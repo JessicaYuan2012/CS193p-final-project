@@ -55,6 +55,10 @@ extension Date {
         return Calendar.current.date(byAdding: DateComponents(month: offset), to: self.startOfMonth())!
     }
     
+    func startOfYear() -> Date {
+        return Calendar.current.date(from: Calendar.current.dateComponents([.year], from: Calendar.current.startOfDay(for: self)))!
+    }
+    
     func endOfMonth(offset: Int) -> Date {
         return Calendar.current.date(byAdding: DateComponents(month: offset+1, day: -1), to: self.startOfMonth())!
     }
@@ -66,6 +70,14 @@ extension Date {
     
     func currentDate() -> Date {
         return Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day], from: Calendar.current.startOfDay(for: self)))!
+    }
+    
+    func daysBefore(offset: Int) -> Date {
+        return Calendar.current.date(byAdding: DateComponents(day: offset), to: self.currentDate())!
+    }
+    
+    func monthsBefore(offset: Int) -> Date {
+        return Calendar.current.date(byAdding: DateComponents(month: offset), to: self.currentDate())!
     }
 }
 
