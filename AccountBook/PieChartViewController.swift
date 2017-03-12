@@ -161,5 +161,5 @@ extension PieChartViewController: CPTPieChartDataSource, CPTPieChartDelegate {
     
     func legendTitle(for pieChart: CPTPieChart, record idx: UInt) -> String? {
         return categoryAmountTupleList![Int(idx)].0
-    }  
+    }
 }

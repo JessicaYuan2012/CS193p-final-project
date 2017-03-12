@@ -38,7 +38,7 @@ class HomeViewController: UIViewController {
         alert.popoverPresentationController?.barButtonItem = newTransactionButtonItem
         present(alert, animated: true, completion: nil)
     }
-
+    
     // MARK: - Unwind segue actions
     @IBAction func goBack(from segue: UIStoryboardSegue) {
     }

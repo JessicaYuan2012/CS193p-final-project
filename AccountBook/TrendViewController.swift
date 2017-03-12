@@ -10,9 +10,9 @@ import UIKit
 import CoreData
 
 class TrendViewController: UIViewController {
-
+    
     @IBOutlet weak var timeScopeSegmentedControl: UISegmentedControl!
-
+    
     @IBAction func segmentChanged(_ sender: UISegmentedControl) {
         let index = sender.selectedSegmentIndex
         showViewControllerForSegment(index)
@@ -102,10 +102,10 @@ class TrendViewController: UIViewController {
                 offset += 1
                 beginDate = endDate
             }
-//            let monthDay = monthExpenseData.count
-//            for i in 0..<monthDay {
-//                print("\(i+1)th day in this month: expense \(monthExpenseData[i]), income \(monthIncomeData[i])")
-//            }
+            //            let monthDay = monthExpenseData.count
+            //            for i in 0..<monthDay {
+            //                print("\(i+1)th day in this month: expense \(monthExpenseData[i]), income \(monthIncomeData[i])")
+            //            }
         }
         
         func getYearData(in context: NSManagedObjectContext) throws {
@@ -134,10 +134,10 @@ class TrendViewController: UIViewController {
                 offset += 1
                 beginDate = endDate
             }
-//            let monthNum = yearIncomeData.count
-//            for i in 0..<monthNum {
-//                print("\(i+1)th month in this year: expense \(yearExpenseData[i]), income \(yearIncomeData[i])")
-//            }
+            //            let monthNum = yearIncomeData.count
+            //            for i in 0..<monthNum {
+            //                print("\(i+1)th month in this year: expense \(yearExpenseData[i]), income \(yearIncomeData[i])")
+            //            }
         }
         
         if let context = container?.viewContext {

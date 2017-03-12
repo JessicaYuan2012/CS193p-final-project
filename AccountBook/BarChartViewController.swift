@@ -24,7 +24,7 @@ class BarChartViewController: UIViewController {
     fileprivate let BarWidth = 0.25
     fileprivate let BarInitialX = 0.25
     fileprivate var amountAnnotation: CPTPlotSpaceAnnotation?
-
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if expenseList != nil, expenseList!.count > 0 {
@@ -178,7 +178,9 @@ class BarChartViewController: UIViewController {
         if let yAxis = axisSet.yAxis {
             yAxis.labelingPolicy = .fixedInterval
             let yMax = ((1.4 * max(expenseList!.max()!, incomeList!.max()!)) as NSDecimalNumber).doubleValue
-            yAxis.majorIntervalLength = pow(10, Double(Int(log10(yMax)))) / 2.0 as NSNumber
+            if yMax > 0 {
+                yAxis.majorIntervalLength = pow(10, Double(Int(log10(yMax)))) / 2.0 as NSNumber
+            }
             yAxis.labelOffset = -10.0
             yAxis.majorTickLength = 30
             let majorTickLineStyle = CPTMutableLineStyle()
@@ -260,8 +262,8 @@ extension BarChartViewController: CPTBarPlotDataSource, CPTBarPlotDelegate {
         }
         
         guard let amount = number(for: plot,
-                                 field: UInt(CPTBarPlotField.barTip.rawValue),
-                                 record: idx) as? Decimal else { return }
+                                  field: UInt(CPTBarPlotField.barTip.rawValue),
+                                  record: idx) as? Decimal else { return }
         
         if amount != Decimal(0.0) {
             let textStyle = CPTMutableTextStyle()
@@ -276,10 +278,12 @@ extension BarChartViewController: CPTBarPlotDataSource, CPTBarPlotDelegate {
             // Get the anchor point for annotation
             let x = CGFloat(idx) + CGFloat(self.BarInitialX) + (CGFloat(plotIndex) * CGFloat(self.BarWidth))
             var y: CGFloat = CGFloat(0.0)
+            let yMax = ((1.4 * max(expenseList!.max()!, incomeList!.max()!)) as NSDecimalNumber).doubleValue
+            let annotationOffset = CGFloat(yMax / 50)
             if amount > 0 {
-                y = CGFloat(amount as NSNumber) + 50
+                y = CGFloat(amount as NSNumber) + annotationOffset
             } else {
-                y = CGFloat(amount as NSNumber) - 50
+                y = CGFloat(amount as NSNumber) - annotationOffset
             }
             amountAnnotation?.anchorPlotPoint = [NSNumber(cgFloat: x), NSNumber(cgFloat: y)]
             // Add the annotation
@@ -288,7 +292,7 @@ extension BarChartViewController: CPTBarPlotDataSource, CPTBarPlotDelegate {
         }
     }
     
-
+    
     func legendTitle(for barPlot: CPTBarPlot, record idx: UInt) -> String? {
         if idx > 0 {
             return nil

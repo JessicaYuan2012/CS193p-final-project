@@ -115,13 +115,8 @@ class NewTransactionViewController: UITableViewController, UINavigationControlle
     }
     
     // MARK: View Controller Lifecycle
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        datePicker.date = Date().currentDate() // clear the time
-    }
-    
     override func viewDidLoad() {
+        datePicker.date = Date().currentDate() // clear the time
         amountTextField.delegate = self
         commentTextField.delegate = self
         imagePicker.delegate = self
