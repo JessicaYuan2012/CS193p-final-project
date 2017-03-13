@@ -18,6 +18,23 @@ class PieChartViewController: UIViewController {
     var timeScope: String? // "Month" or "All"
     var categoryAmountTupleList: [(String, Decimal)]?
     
+    fileprivate let categoryColorDict = [
+        "Shopping":
+            CPTFill(color: CPTColor(componentRed:0.92, green:0.28, blue:0.25, alpha:1.00)), // red
+        "Necessaries":
+            CPTFill(color: CPTColor(componentRed:0.06, green:0.80, blue:0.48, alpha:1.00)), // green
+        "Transportation":
+            CPTFill(color: CPTColor(componentRed: 0.35, green: 0.34, blue: 0.84, alpha: 1.00)), // purple
+        "Fee":
+            CPTFill(color: CPTColor(componentRed: 1.00, green: 0.80, blue: 0.00, alpha: 1.00)), // yellow
+        "Salary":
+            CPTFill(color: CPTColor(componentRed:0.92, green:0.28, blue:0.25, alpha:1.00)), // red
+        "Finance":
+            CPTFill(color: CPTColor(componentRed:0.06, green:0.80, blue:0.48, alpha:1.00)), // green
+        "Others":
+            CPTFill(color: CPTColor(componentRed:0.22, green:0.33, blue:0.49, alpha:1.00)) // dark blue
+    ]
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if categoryAmountTupleList != nil {
@@ -143,20 +160,26 @@ extension PieChartViewController: CPTPieChartDataSource, CPTPieChartDelegate {
     }
     
     func sliceFill(for pieChart: CPTPieChart, record idx: UInt) -> CPTFill? {
-        switch idx {
-        case 0:
-            return CPTFill(color: CPTColor(componentRed:0.92, green:0.28, blue:0.25, alpha:1.00))
-        case 1:
-            return CPTFill(color: CPTColor(componentRed:0.06, green:0.80, blue:0.48, alpha:1.00))
-        case 2:
-            return CPTFill(color: CPTColor(componentRed:0.22, green:0.33, blue:0.49, alpha:1.00))
-        case 3:
-            return CPTFill(color: CPTColor(componentRed: 1.00, green: 0.80, blue: 0.00, alpha: 1.00))
-        case 4:
-            return CPTFill(color: CPTColor(componentRed: 0.35, green: 0.34, blue: 0.84, alpha: 1.00))
-        default:
+        if let category = categoryAmountTupleList?[Int(idx)].0 {
+            return categoryColorDict[category]!
+        }
+        else {
             return nil
         }
+//        switch idx {
+//        case 0:
+//            return CPTFill(color: CPTColor(componentRed:0.92, green:0.28, blue:0.25, alpha:1.00))
+//        case 1:
+//            return CPTFill(color: CPTColor(componentRed:0.06, green:0.80, blue:0.48, alpha:1.00))
+//        case 2:
+//            return CPTFill(color: CPTColor(componentRed:0.22, green:0.33, blue:0.49, alpha:1.00))
+//        case 3:
+//            return CPTFill(color: CPTColor(componentRed: 1.00, green: 0.80, blue: 0.00, alpha: 1.00))
+//        case 4:
+//            return CPTFill(color: CPTColor(componentRed: 0.35, green: 0.34, blue: 0.84, alpha: 1.00))
+//        default:
+//            return nil
+//        }
     }
     
     func legendTitle(for pieChart: CPTPieChart, record idx: UInt) -> String? {

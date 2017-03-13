@@ -1,4 +1,4 @@
-1. Table View API - 4 points (2 breadth, 2 depth)
+1. Table View - 4 points (2 breadth, 2 depth)
 static table view for Add Transaction page, plain-style dynamic table view for Transaction List page, grouped style dynamic table view for Transaction Detail page;
 custom cell;
 table view for Transaction List page works with NSFetchedResultsControllerDelegate
