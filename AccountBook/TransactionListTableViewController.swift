@@ -93,13 +93,11 @@ class TransactionListTableViewController: FetchedResultsTableViewController {
     // MARK: - Table View DataSource
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Transaction Entry", for: indexPath) as! TransactionEntryTableViewCell
-        
         if searchController.isActive {
             cell.transaction = filteredTransactions[indexPath.section].1[indexPath.row]
         } else {
             cell.transaction = fetchedResultsController?.object(at: indexPath)
         }
-        
         return cell
     }
     

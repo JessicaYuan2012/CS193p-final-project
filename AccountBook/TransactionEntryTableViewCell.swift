@@ -33,6 +33,7 @@ class TransactionEntryTableViewCell: UITableViewCell {
                 amountLabel.textColor = UIColor(red: CGFloat(76)/255.0, green: CGFloat(217)/255.0, blue: CGFloat(100)/255.0, alpha: CGFloat(1.0)) // green
             }
             commentLabel.text = transaction!.comment
+            commentLabel.sizeToFit()
         }
     }
 }
