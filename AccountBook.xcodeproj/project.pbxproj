@@ -28,6 +28,7 @@
 		2F9894621E74D00000EACBCA /* TrendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9894611E74D00000EACBCA /* TrendViewController.swift */; };
 		2FAC68301E721C9C00D7EE69 /* TransactionDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAC682F1E721C9C00D7EE69 /* TransactionDetailTableViewController.swift */; };
 		2FAC68361E724D5A00D7EE69 /* ImageFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAC68351E724D5A00D7EE69 /* ImageFieldTableViewCell.swift */; };
+		2FFAD5021E7A564D008BBF6E /* NotificationSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFAD5011E7A564D008BBF6E /* NotificationSettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		2F9894611E74D00000EACBCA /* TrendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendViewController.swift; sourceTree = "<group>"; };
 		2FAC682F1E721C9C00D7EE69 /* TransactionDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionDetailTableViewController.swift; sourceTree = "<group>"; };
 		2FAC68351E724D5A00D7EE69 /* ImageFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageFieldTableViewCell.swift; sourceTree = "<group>"; };
+		2FFAD5011E7A564D008BBF6E /* NotificationSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationSettingsViewController.swift; sourceTree = "<group>"; };
 		8BB15F4A17E76B553DFDF22A /* Pods-AccountBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccountBook.release.xcconfig"; path = "Pods/Target Support Files/Pods-AccountBook/Pods-AccountBook.release.xcconfig"; sourceTree = "<group>"; };
 		CA8677C40F39B50443779658 /* Pods-AccountBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccountBook.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AccountBook/Pods-AccountBook.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -104,6 +106,7 @@
 				2F15E4F11E6E5D820067BF1A /* LaunchScreen.storyboard */,
 				2F15E4FD1E6E6EAF0067BF1A /* HomeViewController.swift */,
 				2F15E5011E6E7B300067BF1A /* NewTransactionViewController.swift */,
+				2FFAD5011E7A564D008BBF6E /* NotificationSettingsViewController.swift */,
 				2F387C901E7281A10035407A /* List View */,
 				2F387C911E7281B30035407A /* Transaction Detail Veiw */,
 				2F98945C1E73D5C300EACBCA /* Composition View */,
@@ -313,6 +316,7 @@
 				2F387C941E7284770035407A /* Utilities.swift in Sources */,
 				2F1899FC1E71363200A47049 /* TransactionEntryTableViewCell.swift in Sources */,
 				2F15E4EE1E6E5D820067BF1A /* AccountBook.xcdatamodeld in Sources */,
+				2FFAD5021E7A564D008BBF6E /* NotificationSettingsViewController.swift in Sources */,
 				2F1899F71E6FB69900A47049 /* Transaction.swift in Sources */,
 				2F1899FA1E7135DE00A47049 /* TransactionListTableViewController.swift in Sources */,
 				2F15E4E61E6E5D820067BF1A /* AppDelegate.swift in Sources */,

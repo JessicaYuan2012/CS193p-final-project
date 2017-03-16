@@ -7,7 +7,7 @@ table view for Transaction List page works with NSFetchedResultsControllerDelega
 simple schema, but implement insertion, deletion of data, and complicated queries to get data in home page and for plot
 
 3. Storyboard Design - 1 point
-Navigation, TabBar, SplitView, ButtomBar
+Navigation, TabBar, SplitView, BottomBar
 
 4. Controls API - 2 points
 Button, Label, Picker, Segmented Control, Text Field
@@ -43,7 +43,15 @@ in Transaction List page with search bar, used to filter and search transactions
 13. Date Picker (NCIL) - 1*2 = 2 points
 in New Transaction page, set maximum date
 
-14. Miscellaneous - 1 point
+14. Notification (NCIL) - 1 (*2 = 2 points)
 
-...
+15. Miscellaneous - 1 point
+
+16. Creativity - 1 point
+
+17. UI Design - 2 points
+
+18. Coding Style - 2 points
+
+19. Stability and Usability - 2 points
 

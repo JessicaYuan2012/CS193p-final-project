@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import UserNotifications
 
 // CITE: - from lecture
 extension UIViewController {
@@ -121,4 +122,31 @@ extension UIColor {
     static func themeColor() -> UIColor {
         return UIColor(red: 39.0/255.0, green: 163.0/255.0, blue: 227.0/255.0, alpha: 1.0)
     }
+}
+
+func addNotification(at time: (hour: Int, minute: Int)) {
+    // Cite: https://useyourloaf.com/blog/local-notifications-with-ios-10/
+    // ask user for permission of notification
+    let center = UNUserNotificationCenter.current()
+    let options: UNAuthorizationOptions = [.sound, .badge]
+    center.requestAuthorization(options: options) {
+        (granted, error) in
+        if !granted {
+            print("Something went wrong")
+        }
+    }
+    
+    // add notification
+    let content = UNMutableNotificationContent()
+    content.title = "Add some new transactions to AccountBook!"
+    content.body = "Please come back and keep recording your transaction."
+    content.sound = UNNotificationSound.default()
+    
+    let triggerDaily = DateComponents(calendar: nil, timeZone: nil, era: nil, year: nil, month: nil, day: nil, hour: time.hour, minute: time.minute, second: nil, nanosecond: nil, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil, weekOfYear: nil, yearForWeekOfYear: nil)
+    let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDaily, repeats: true)
+    
+    let identifier = "AccountBookLocalNotification"
+    let request = UNNotificationRequest(identifier: identifier,
+                                        content: content, trigger: trigger)
+    center.add(request, withCompletionHandler: { (error) in })
 }

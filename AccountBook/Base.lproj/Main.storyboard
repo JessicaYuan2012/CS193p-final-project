@@ -616,6 +616,7 @@
                         <segue destination="aVo-AP-xjw" kind="relationship" relationship="viewControllers" id="rLM-Kc-cWR"/>
                         <segue destination="Cv4-wn-uld" kind="relationship" relationship="viewControllers" id="ouW-Nk-bST"/>
                         <segue destination="UMJ-1J-Ria" kind="relationship" relationship="viewControllers" id="7c6-Yy-a7S"/>
+                        <segue destination="YOw-nd-atC" kind="relationship" relationship="viewControllers" id="qeN-ey-ehf"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="faM-zB-3tR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -905,6 +906,97 @@
             </objects>
             <point key="canvasLocation" x="-498" y="1614"/>
         </scene>
+        <!--Notification Settings-->
+        <scene sceneID="7q2-oM-llX">
+            <objects>
+                <viewController id="d42-wt-pPJ" customClass="NotificationSettingsViewController" customModule="AccountBook" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XUe-9e-4La"/>
+                        <viewControllerLayoutGuide type="bottom" id="tgN-ei-CBA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7yY-Ql-leR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="zoa-cA-2nz">
+                                <rect key="frame" x="27.5" y="190" width="320" height="287.5"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="Qw8-nS-qau">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="31"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Allow Daily Notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wE7-fn-bcH">
+                                                <rect key="frame" x="0.0" y="5.5" width="231" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X5O-4h-hyF">
+                                                <rect key="frame" x="271" y="0.0" width="51" height="31"/>
+                                                <connections>
+                                                    <action selector="switchNotificationState:" destination="d42-wt-pPJ" eventType="valueChanged" id="aMS-hV-R4j"/>
+                                                </connections>
+                                            </switch>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Udw-wn-pgA">
+                                        <rect key="frame" x="0.0" y="51" width="320" height="236.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notification Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WXJ-fs-491">
+                                                <rect key="frame" x="0.0" y="0.0" width="130.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GSn-CB-Ljc">
+                                                <rect key="frame" x="0.0" y="20.5" width="320" height="216"/>
+                                                <date key="date" timeIntervalSinceReferenceDate="511329600.36321801">
+                                                    <!--2017-03-16 04:00:00 +0000-->
+                                                </date>
+                                                <connections>
+                                                    <action selector="newNotificationTimeSet2:" destination="d42-wt-pPJ" eventType="valueChanged" id="Zje-CR-MzK"/>
+                                                </connections>
+                                            </datePicker>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zoa-cA-2nz" firstAttribute="centerY" secondItem="7yY-Ql-leR" secondAttribute="centerY" id="7Ls-KN-hgJ"/>
+                            <constraint firstItem="zoa-cA-2nz" firstAttribute="centerX" secondItem="7yY-Ql-leR" secondAttribute="centerX" id="dLs-Zl-mOz"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Notification Settings" id="UP4-oj-ucf"/>
+                    <connections>
+                        <outlet property="datePicker" destination="GSn-CB-Ljc" id="WWb-15-I0c"/>
+                        <outlet property="notificationSwitch" destination="X5O-4h-hyF" id="21k-Sx-5jY"/>
+                        <outlet property="notificationTimeLabel" destination="WXJ-fs-491" id="3QR-6G-dOK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iTZ-c1-K2c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="428" y="2307.7961019490258"/>
+        </scene>
+        <!--Notification-->
+        <scene sceneID="aLp-BX-FHx">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YOw-nd-atC" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Notification" image="setting" id="eSW-OY-ckK"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="TBJ-Rp-BTP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="d42-wt-pPJ" kind="relationship" relationship="rootViewController" id="yMV-3e-jme"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FLE-fq-G3m" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-511.19999999999999" y="2308.695652173913"/>
+        </scene>
     </scenes>
     <resources>
         <image name="bar chart" width="30" height="30"/>
@@ -912,6 +1004,7 @@
         <image name="home" width="30" height="30"/>
         <image name="list" width="30" height="30"/>
         <image name="pie chart" width="30" height="30"/>
+        <image name="setting" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="b3g-UP-SIl"/>

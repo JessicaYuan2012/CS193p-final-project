@@ -15,7 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         // set color for page view's dots
@@ -36,34 +35,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         UITabBar.appearance().tintColor = UIColor.themeColor()
         
-        // ask user for permission of notification
-        let center = UNUserNotificationCenter.current()
-        let options: UNAuthorizationOptions = [.sound, .badge]
-        center.requestAuthorization(options: options) {
-            (granted, error) in
-            if !granted {
-                print("Something went wrong")
-            }
+        // Cite: http://stackoverflow.com/questions/27208103/swift-detect-first-launch
+        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+        if launchedBefore  {
+            print("Not first launch.")
+        } else {
+            print("First launch.")
+            UserDefaults.standard.set(true, forKey: "launchedBefore")
+            addNotification(at: (hour:21, minute:0)) // add default daily notification at 9PM
         }
-        center.getNotificationSettings { (settings) in
-            if settings.authorizationStatus != .authorized {
-                print("Notifications not allowed")
-            }
-        }
-        
-        // add default notification
-        let content = UNMutableNotificationContent()
-        content.title = "Add some new transactions to AccountBook!"
-        content.body = "Please come back and keep recording your transaction."
-        content.sound = UNNotificationSound.default()
-    
-        let triggerDaily = DateComponents(calendar: nil, timeZone: nil, era: nil, year: nil, month: nil, day: nil, hour: 21, minute: 0, second: 0, nanosecond: nil, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil, weekOfYear: nil, yearForWeekOfYear: nil) // every day at 9 o'clock
-        let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDaily, repeats: true)
-
-        let identifier = "AccountBookLocalNotification"
-        let request = UNNotificationRequest(identifier: identifier,
-                                            content: content, trigger: trigger)
-        center.add(request, withCompletionHandler: { (error) in })
         return true
     }
 
