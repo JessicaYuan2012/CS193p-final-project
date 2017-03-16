@@ -10,7 +10,7 @@ simple schema, but implement insertion, deletion of data, and complicated querie
 Navigation, TabBar, SplitView, BottomBar
 
 4. Controls API - 2 points
-Button, Label, Picker, Segmented Control, Text Field
+Button, Label, Picker, Segmented Control, Text Field, Switch
 
 5. Segue - 2 points
 Show Detail, Modal, Unwind;
@@ -29,7 +29,7 @@ different font size for home page
 
 9. Image Picker - 1 points
 
-10. Date API - 1 points
+10. Date API - 2 points
 (in Utilities.swift)
 extension for Date class to get specific dates;
 reformat date string for display
@@ -41,7 +41,7 @@ for pie chart
 in Transaction List page with search bar, used to filter and search transactions(search field include transaction category and comment)
 
 13. Date Picker (NCIL) - 1*2 = 2 points
-in New Transaction page, set maximum date
+in New Transaction page and Notification page
 
 14. Notification (NCIL) - 1 (*2 = 2 points)
 
@@ -55,3 +55,4 @@ in New Transaction page, set maximum date
 
 19. Stability and Usability - 2 points
 
+(20. proposal & slides - 2 points)
