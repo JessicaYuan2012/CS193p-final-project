@@ -36,6 +36,7 @@ class HomeViewController: UIViewController {
         })
         alert.modalPresentationStyle = .popover
         alert.popoverPresentationController?.barButtonItem = newTransactionButtonItem
+        alert.view.tintColor = UIColor.themeColor()
         present(alert, animated: true, completion: nil)
     }
     
@@ -166,6 +167,8 @@ class HomeViewController: UIViewController {
     // MARK: View Controller Lifecycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        // Cite:http://stackoverflow.com/questions/25388214/how-do-i-change-navigationbar-font-in-swift
+        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Party LET", size: 30.0)!, NSForegroundColorAttributeName: UIColor.white]
         updateData()
     }
     

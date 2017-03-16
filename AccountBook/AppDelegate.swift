@@ -17,10 +17,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        // set color for page view's dots
         let pageController = UIPageControl.appearance()
         pageController.pageIndicatorTintColor = UIColor(red: CGFloat(224)/255.0, green: CGFloat(224)/255.0, blue: CGFloat(224)/255.0, alpha: CGFloat(1.0)) // light grey
-        pageController.currentPageIndicatorTintColor = UIColor(red: CGFloat(0)/255.0, green: CGFloat(122)/255.0, blue: CGFloat(255)/255.0, alpha: CGFloat(1.0)) // blue
+        pageController.currentPageIndicatorTintColor = UIColor.themeColor()
         pageController.backgroundColor = UIColor.white
+        
+        UINavigationBar.appearance().barTintColor = UIColor.themeColor()
+        UINavigationBar.appearance().tintColor = UIColor.white
+        
+        UIBarButtonItem.appearance().tintColor = UIColor.white
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Party LET", size: 30.0)!, NSForegroundColorAttributeName: UIColor.white], for: .normal)
+        
+        UISearchBar.appearance().barTintColor = UIColor.themeColor()
+        UISearchBar.appearance().tintColor = UIColor.white
+        
+        UISegmentedControl.appearance().tintColor = UIColor.white
+
+        UITabBar.appearance().tintColor = UIColor.themeColor()
+        
+        
         return true
     }
 
@@ -94,3 +110,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+extension UIColor {
+    static func themeColor() -> UIColor {
+        return UIColor(red: 88.0/255.0, green: 86.0/255.0, blue: 214.0/255.0, alpha: 1.0) // purple
+    }
+}

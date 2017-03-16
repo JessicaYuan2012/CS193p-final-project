@@ -10,6 +10,8 @@ import UIKit
 import CoreData
 
 class TransactionDetailTableViewController: UITableViewController {
+    @IBOutlet weak var deleteTransactionButton: UIBarButtonItem!
+    
     @IBAction func deleteTransactionButton(_ sender: UIBarButtonItem) {
         if transaction != nil {
             let alert = UIAlertController(title: "Delete Confimation", message: "Are you sure you want to delete this transaction?", preferredStyle: .alert)
@@ -22,6 +24,7 @@ class TransactionDetailTableViewController: UITableViewController {
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) {
                 (action: UIAlertAction) -> Void in
             })
+            alert.view.tintColor = UIColor.themeColor()
             present(alert, animated: true, completion: nil)
         }
     }
@@ -43,6 +46,9 @@ class TransactionDetailTableViewController: UITableViewController {
         if transaction != nil {
             self.navigationController?.setToolbarHidden(false, animated: true)
         }
+        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Party LET", size: 30.0)!, NSForegroundColorAttributeName: UIColor.white]
+        self.deleteTransactionButton.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.red], for: .normal) // override bar button item attributes
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {

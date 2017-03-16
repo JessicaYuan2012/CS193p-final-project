@@ -23,7 +23,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ihb-yV-17y" id="MiZ-gq-yi2">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DAE-6P-30s">
@@ -94,14 +94,14 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Text Cell" textLabel="zAy-XQ-jWW" style="IBUITableViewCellStyleDefault" id="wYt-Ld-aGT">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wYt-Ld-aGT" id="6DD-HH-Euk">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zAy-XQ-jWW">
-                                            <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                            <rect key="frame" x="15" y="0.0" width="345" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -111,10 +111,10 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Image Cell" rowHeight="188" id="45x-K0-sH5" customClass="ImageFieldTableViewCell" customModule="AccountBook" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="99.5" width="375" height="188"/>
+                                <rect key="frame" x="0.0" y="100" width="375" height="188"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="45x-K0-sH5" id="jI7-Ii-nhf">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="187.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="187"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aU2-ga-KJf">
@@ -152,6 +152,7 @@
                     <navigationItem key="navigationItem" title="Detail" id="Yzq-qa-otN"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="deleteTransactionButton" destination="8sZ-JC-7X5" id="hec-9m-484"/>
                         <segue destination="H93-n7-oc4" kind="unwind" identifier="Delete Transaction" unwindAction="deleteTransactionFrom:" id="59n-5X-oiU"/>
                     </connections>
                 </tableViewController>
@@ -195,7 +196,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Balance" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kHl-5y-QWd">
                                                 <rect key="frame" x="96.5" y="0.0" width="90.5" height="47"/>
                                                 <fontDescription key="fontDescription" name="PartyLetPlain" family="Party LET" pointSize="40"/>
-                                                <color key="textColor" red="0.1225835457" green="0.52491009239999997" blue="0.9984729886" alpha="0.60565603599999995" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" red="0.43700700999999997" green="0.43078091740000002" blue="0.85862630610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <variation key="heightClass=regular-widthClass=regular">
                                                     <fontDescription key="fontDescription" name="PartyLetPlain" family="Party LET" pointSize="90"/>
@@ -210,7 +211,7 @@
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Month" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P6Z-60-aSw">
                                                                 <rect key="frame" x="0.0" y="0.0" width="134" height="30"/>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                                                                <color key="textColor" red="1" green="0.22137647867202759" blue="0.14142847061157227" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="textColor" red="1" green="0.22137647869999999" blue="0.14142847059999999" alpha="0.72367294520000003" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                                 <variation key="heightClass=regular-widthClass=regular">
                                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
@@ -219,7 +220,7 @@
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This Month" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V6X-FW-rdC">
                                                                 <rect key="frame" x="149" y="0.0" width="134" height="30"/>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                                                                <color key="textColor" red="0.26244264841079712" green="0.84621316194534302" blue="0.36442297697067261" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="textColor" red="0.26244264841079712" green="0.84621316194534302" blue="0.36442297697067261" alpha="0.75230094178082196" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                                 <variation key="heightClass=regular-widthClass=regular">
                                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
@@ -263,7 +264,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Up Till Now This Month" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dkc-BZ-9Ue">
                                                 <rect key="frame" x="0.0" y="0.0" width="294" height="47"/>
                                                 <fontDescription key="fontDescription" name="PartyLetPlain" family="Party LET" pointSize="40"/>
-                                                <color key="textColor" red="0.1225835457" green="0.52491009239999997" blue="0.9984729886" alpha="0.60565603599999995" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" red="0.43700700999999997" green="0.43078091740000002" blue="0.85862630610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <variation key="heightClass=regular-widthClass=regular">
                                                     <fontDescription key="fontDescription" name="PartyLetPlain" family="Party LET" pointSize="90"/>
@@ -278,7 +279,7 @@
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expense" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MRK-bx-BZ5">
                                                                 <rect key="frame" x="0.0" y="0.0" width="102" height="30"/>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                                                                <color key="textColor" red="1" green="0.22137647869999999" blue="0.14142847059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="textColor" red="1" green="0.22137647867202759" blue="0.14142847061157227" alpha="0.72367294520547942" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                                 <variation key="heightClass=regular-widthClass=regular">
                                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
@@ -287,7 +288,7 @@
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Income" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KP1-u6-aRk">
                                                                 <rect key="frame" x="122" y="0.0" width="102" height="30"/>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                                                                <color key="textColor" red="0.26244264839999998" green="0.84621316189999995" blue="0.36442297699999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="textColor" red="0.26244264839999998" green="0.84621316189999995" blue="0.36442297699999998" alpha="0.75230094179999996" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                                 <variation key="heightClass=regular-widthClass=regular">
                                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
@@ -399,7 +400,7 @@
                                                 <constraint firstItem="qYF-Ge-pr6" firstAttribute="leading" secondItem="eAM-dF-zwP" secondAttribute="leadingMargin" id="i3N-HP-5Gl"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.1225835457" green="0.52491009239999997" blue="0.9984729886" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.43700700998306274" green="0.43078091740608215" blue="0.85862630605697632" alpha="0.17331977739726026" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Amount Field" id="adf-BN-KIe">
                                         <rect key="frame" x="0.0" y="100" width="375" height="44"/>
@@ -470,7 +471,7 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="8Km-1S-Bgx" secondAttribute="bottom" id="cBU-jA-7ld"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.1225835457" green="0.52491009239999997" blue="0.9984729886" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.43700700998306274" green="0.43078091740608215" blue="0.85862630605697632" alpha="0.17331977739726026" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Comment Field" id="Ay7-dG-mPP">
                                         <rect key="frame" x="0.0" y="244" width="375" height="44"/>
@@ -527,7 +528,9 @@
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9TW-Ba-XID">
                                                             <rect key="frame" x="47" y="0.0" width="312" height="28"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                            <state key="normal" title="Add Image"/>
+                                                            <state key="normal" title="Add Image">
+                                                                <color key="titleColor" red="0.43700700999999997" green="0.43078091740000002" blue="0.85862630610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
                                                             <connections>
                                                                 <action selector="addImage:" destination="QwT-XA-mLA" eventType="touchUpInside" id="pU1-cq-t91"/>
                                                             </connections>
@@ -542,7 +545,7 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="ZYD-yL-JZR" secondAttribute="bottom" id="hbM-V3-aVx"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.1225835457" green="0.52491009239999997" blue="0.9984729886" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.43700700998306274" green="0.43078091740608215" blue="0.85862630605697632" alpha="0.17331977739726026" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Image Field" rowHeight="200" id="EDz-0h-IZz">
                                         <rect key="frame" x="0.0" y="332" width="375" height="200"/>
@@ -562,7 +565,7 @@
                                                 <constraint firstItem="Tkn-X8-W7j" firstAttribute="top" secondItem="ucB-fc-uoD" secondAttribute="topMargin" id="PQ2-zG-8Db"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.1225835457" green="0.52491009239999997" blue="0.9984729886" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.43700700998306274" green="0.43078091740608215" blue="0.85862630605697632" alpha="0.17331977739726026" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -912,6 +915,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="b3g-UP-SIl"/>
-        <segue reference="qq2-c0-1Wq"/>
+        <segue reference="tpE-p2-H9z"/>
     </inferredMetricsTieBreakers>
 </document>

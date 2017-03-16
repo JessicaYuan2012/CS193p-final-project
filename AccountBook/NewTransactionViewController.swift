@@ -30,6 +30,7 @@ class NewTransactionViewController: UITableViewController, UINavigationControlle
         })
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { (action: UIAlertAction) -> Void in })
         alert.modalPresentationStyle = .popover
+        alert.view.tintColor = UIColor.themeColor()
         let ppc = alert.popoverPresentationController
         ppc?.sourceView = view
         ppc?.sourceRect = view.bounds
@@ -99,6 +100,7 @@ class NewTransactionViewController: UITableViewController, UINavigationControlle
             style:.default,
             handler: nil)
         alertVC.addAction(okAction)
+        alertVC.view.tintColor = UIColor.themeColor()
         present(alertVC, animated: true, completion: nil)
     }
     
@@ -115,6 +117,13 @@ class NewTransactionViewController: UITableViewController, UINavigationControlle
     }
     
     // MARK: View Controller Lifecycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Party LET", size: 30.0)!, NSForegroundColorAttributeName: UIColor.white]
+        self.doneButton.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Party LET", size: 30.0)!, NSForegroundColorAttributeName: UIColor.lightGray], for: .disabled)
+        self.doneButton.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Party LET", size: 30.0)!, NSForegroundColorAttributeName: UIColor.white], for: .normal)
+    }
+    
     override func viewDidLoad() {
         datePicker.date = Date().currentDate() // clear the time
         amountTextField.delegate = self
