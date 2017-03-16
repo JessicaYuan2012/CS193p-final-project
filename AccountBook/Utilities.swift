@@ -118,6 +118,12 @@ func getMonthString(for date: Date) -> String {
     return formattedDateString
 }
 
+func getDateFromHourMinuteString(for string: String) -> Date? {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "H:m"
+    return dateFormatter.date(from: string)
+}
+
 extension UIColor {
     static func themeColor() -> UIColor {
         return UIColor(red: 39.0/255.0, green: 163.0/255.0, blue: 227.0/255.0, alpha: 1.0)
@@ -148,5 +154,8 @@ func addNotification(at time: (hour: Int, minute: Int)) {
     let identifier = "AccountBookLocalNotification"
     let request = UNNotificationRequest(identifier: identifier,
                                         content: content, trigger: trigger)
+    UserDefaults.standard.set(time.hour, forKey: "NotificationTime-Hour")
+    UserDefaults.standard.set(time.minute, forKey: "NotificationTime-Minute")
+    UserDefaults.standard.set(true, forKey: "Notification")
     center.add(request, withCompletionHandler: { (error) in })
 }

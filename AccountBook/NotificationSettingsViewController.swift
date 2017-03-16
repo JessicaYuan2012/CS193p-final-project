@@ -19,7 +19,6 @@ class NotificationSettingsViewController: UIViewController {
     
     @IBAction func switchNotificationState(_ sender: UISwitch) {
         if sender.isOn {
-            UserDefaults.standard.set(true, forKey: "Notification")
             notificationTimeLabel.isHidden = false
             datePicker.isHidden = false
             let hour = Calendar.current.component(.hour, from: datePicker.date)
@@ -35,8 +34,7 @@ class NotificationSettingsViewController: UIViewController {
         }
     }
     
-    @IBAction func newNotificationTimeSet2(_ sender: UIDatePicker) {
-        // value changed
+    @IBAction func newNotificationTimeSet(_ sender: UIDatePicker) {
         let hour = Calendar.current.component(.hour, from: sender.date)
         let minute = Calendar.current.component(.minute, from: sender.date)
         addNotification(at: (hour, minute))
@@ -51,6 +49,13 @@ class NotificationSettingsViewController: UIViewController {
         if !notificationState {
             notificationTimeLabel.isHidden = true
             datePicker.isHidden = true
+        } else {
+            let hour = UserDefaults.standard.integer(forKey: "NotificationTime-Hour")
+            let minute = UserDefaults.standard.integer(forKey: "NotificationTime-Minute")
+            if let date = getDateFromHourMinuteString(for: "\(hour):\(minute)") {
+                datePicker.setDate(date, animated: true)
+            }
+            
         }
     }
 }

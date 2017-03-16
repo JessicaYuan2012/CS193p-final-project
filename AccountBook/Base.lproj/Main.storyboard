@@ -953,7 +953,7 @@
                                                     <!--2017-03-16 04:00:00 +0000-->
                                                 </date>
                                                 <connections>
-                                                    <action selector="newNotificationTimeSet2:" destination="d42-wt-pPJ" eventType="valueChanged" id="Zje-CR-MzK"/>
+                                                    <action selector="newNotificationTimeSet:" destination="d42-wt-pPJ" eventType="valueChanged" id="Zje-CR-MzK"/>
                                                 </connections>
                                             </datePicker>
                                         </subviews>

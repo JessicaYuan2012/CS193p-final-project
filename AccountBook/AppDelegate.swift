@@ -38,9 +38,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Cite: http://stackoverflow.com/questions/27208103/swift-detect-first-launch
         let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
         if launchedBefore  {
-            print("Not first launch.")
+//            print("Not first launch.")
         } else {
-            print("First launch.")
+//            print("First launch.")
             UserDefaults.standard.set(true, forKey: "launchedBefore")
             addNotification(at: (hour:21, minute:0)) // add default daily notification at 9PM
         }
