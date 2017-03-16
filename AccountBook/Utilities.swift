@@ -116,3 +116,9 @@ func getMonthString(for date: Date) -> String {
     let formattedDateString = dateFormatter.string(from: date)
     return formattedDateString
 }
+
+extension UIColor {
+    static func themeColor() -> UIColor {
+        return UIColor(red: 39.0/255.0, green: 163.0/255.0, blue: 227.0/255.0, alpha: 1.0)
+    }
+}

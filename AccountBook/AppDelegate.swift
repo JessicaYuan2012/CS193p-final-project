@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -25,7 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UINavigationBar.appearance().barTintColor = UIColor.themeColor()
         UINavigationBar.appearance().tintColor = UIColor.white
-        
         UIBarButtonItem.appearance().tintColor = UIColor.white
         UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Party LET", size: 30.0)!, NSForegroundColorAttributeName: UIColor.white], for: .normal)
         
@@ -36,7 +36,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         UITabBar.appearance().tintColor = UIColor.themeColor()
         
+        // ask user for permission of notification
+        let center = UNUserNotificationCenter.current()
+        let options: UNAuthorizationOptions = [.sound, .badge]
+        center.requestAuthorization(options: options) {
+            (granted, error) in
+            if !granted {
+                print("Something went wrong")
+            }
+        }
+        center.getNotificationSettings { (settings) in
+            if settings.authorizationStatus != .authorized {
+                print("Notifications not allowed")
+            }
+        }
         
+        // add default notification
+        let content = UNMutableNotificationContent()
+        content.title = "Add some new transactions to AccountBook!"
+        content.body = "Please come back and keep recording your transaction."
+        content.sound = UNNotificationSound.default()
+    
+        let triggerDaily = DateComponents(calendar: nil, timeZone: nil, era: nil, year: nil, month: nil, day: nil, hour: 21, minute: 0, second: 0, nanosecond: nil, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil, weekOfYear: nil, yearForWeekOfYear: nil) // every day at 9 o'clock
+        let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDaily, repeats: true)
+
+        let identifier = "AccountBookLocalNotification"
+        let request = UNNotificationRequest(identifier: identifier,
+                                            content: content, trigger: trigger)
+        center.add(request, withCompletionHandler: { (error) in })
         return true
     }
 
@@ -107,11 +134,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
-    }
-}
-
-extension UIColor {
-    static func themeColor() -> UIColor {
-        return UIColor(red: 88.0/255.0, green: 86.0/255.0, blue: 214.0/255.0, alpha: 1.0) // purple
     }
 }
